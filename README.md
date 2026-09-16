@@ -79,6 +79,16 @@ machine, in each webapp window: `chrome://extensions` → Developer mode →
 Both are theme-scoped. On any other theme the hooks swap in `neutral.css` and
 the sites go back to stock.
 
+## Nautilus
+
+Omarchy writes `~/.config/gtk-4.0/gtk.css` as a thin importer of the libadwaita
+palette it derives from `colors.toml`. This theme's own file manager rules are a
+separate file, `gtk-4.0.css`, so `install.sh` adds a second import for it.
+
+That import is how the scoping works: SolarOS is the only theme that ships a
+`gtk-4.0.css`, so under any other theme the path does not resolve and GTK skips
+it. Nothing to turn off.
+
 ## What is in here
 
 | Path | What it is |
@@ -91,7 +101,7 @@ the sites go back to stock.
 | `gtk-4.0.css` | GTK4 apps, Nautilus included |
 | `obsidian.css` | Obsidian |
 | `backgrounds/` | Fifteen wallpapers, ordered flat grid → grid in perspective → scenes → abstract |
-| `hooks/` | Re-apply the Hyprland opacity, the Nautilus stylesheet and the webapp palettes on every theme switch |
+| `hooks/` | Re-apply the Hyprland opacity and the webapp palettes on every theme switch |
 | `bin/` | The WhatsApp launcher and the two palette-swap scripts the hooks call |
 | `webapps/` | The WhatsApp and TIDAL extensions |
 | `applications/` | Desktop entry for the WhatsApp webapp |

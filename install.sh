@@ -53,10 +53,30 @@ fi
 # applied. Both directories get the same Hyprland hook on purpose.
 say "hooks -> $HOOK_DIR"
 mkdir -p "$HOOK_DIR/theme-set.d" "$HOOK_DIR/post-boot.d"
-for h in solaros-hyprland-opacity solaros-nautilus solaros-whatsapp solaros-tidal; do
+for h in solaros-hyprland-opacity solaros-whatsapp solaros-tidal; do
   install -Dm 755 "$SRC/hooks/$h" "$HOOK_DIR/theme-set.d/$h"
 done
 install -Dm 755 "$SRC/hooks/solaros-hyprland-opacity" "$HOOK_DIR/post-boot.d/solaros-hyprland-opacity"
+
+# ------------------------------------------------------------------ nautilus
+# Omarchy generates $CONFIG/gtk-4.0/gtk.css as a thin importer of the palette
+# it derives from colors.toml. The theme's own Nautilus rules live alongside
+# it in gtk-4.0.css, so they need a second import. Only SolarOS ships that
+# file, so on any other theme the import simply does not resolve and GTK
+# ignores it -- which is the whole scoping mechanism.
+GTK_CSS=$CONFIG/gtk-4.0/gtk.css
+GTK_IMPORT='@import url("file://'$HOME'/.local/state/omarchy/current/theme/gtk-4.0.css");'
+mkdir -p "$CONFIG/gtk-4.0"
+if [[ ! -f $GTK_CSS ]]; then
+  printf '%s\n' "$GTK_IMPORT" > "$GTK_CSS"
+  say "nautilus -> $GTK_CSS (created)"
+elif ! grep -qF 'current/theme/gtk-4.0.css' "$GTK_CSS"; then
+  # @import has to precede every other rule, so it goes in at the top.
+  printf '%s\n%s\n' "$GTK_IMPORT" "$(cat "$GTK_CSS")" > "$GTK_CSS"
+  say "nautilus -> $GTK_CSS (import added)"
+else
+  say "nautilus -> $GTK_CSS (already imported)"
+fi
 
 # ------------------------------------------------------------- the launchers
 say "scripts -> $BIN"
