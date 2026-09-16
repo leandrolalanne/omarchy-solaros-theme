@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-extension_dir="$HOME/.config/omarchy/webapps/solaros/tidal"
+extension_dir="$HOME/.config/omarchy/webapps/encom-audio/tidal-encom"
 theme_name="${1:-}"
 
 if [[ -z $theme_name ]]; then

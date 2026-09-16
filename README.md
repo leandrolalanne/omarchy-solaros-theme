@@ -69,12 +69,22 @@ omarchy font set "JetBrainsMono Nerd Font"
 
 ## The browser extensions
 
-`webapps/whatsapp` and `webapps/tidal` are unpacked MV3 extensions that restyle
-WhatsApp Web and TIDAL to match the desktop. Chromium tracks unpacked
-extensions by absolute path and will not pick them up on its own. Once per
-machine, in each webapp window: `chrome://extensions` → Developer mode →
-**Load unpacked** → point it at
-`~/.config/omarchy/webapps/solaros/whatsapp` and `.../tidal`.
+`webapps/whatsapp-slim-encom` and `webapps/tidal-encom` are unpacked MV3
+extensions that restyle WhatsApp Web and TIDAL to match the desktop. Chromium
+tracks unpacked extensions by absolute path, so once per machine, in each
+webapp window: `chrome://extensions` → Developer mode → **Load unpacked** →
+point it at `~/.config/omarchy/webapps/encom-communications/whatsapp-slim-encom`
+and `~/.config/omarchy/webapps/encom-audio/tidal-encom`.
+
+Those directory names are the paths Chromium already has on file. Renaming them
+costs a manual re-add on every machine that has them loaded, which is why they
+keep the old spelling.
+
+The steadier way, if your Chromium reads `~/.config/chromium-flags.conf`, is to
+append both paths to `--load-extension=` there (comma-separated, no spaces).
+They then load on every start without living in the browser profile. Keep that
+list honest: Chromium opens a modal at startup for any path in it that no longer
+resolves.
 
 Both are theme-scoped. On any other theme the hooks swap in `neutral.css` and
 the sites go back to stock.

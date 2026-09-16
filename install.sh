@@ -19,7 +19,8 @@ DATA=${XDG_DATA_HOME:-$HOME/.local/share}
 BIN=$HOME/.local/bin
 
 THEME_DIR=$CONFIG/omarchy/themes/solaros
-WEBAPP_DIR=$CONFIG/omarchy/webapps/solaros
+WEBAPP_WA=$CONFIG/omarchy/webapps/encom-communications/whatsapp-slim-encom
+WEBAPP_TIDAL=$CONFIG/omarchy/webapps/encom-audio/tidal-encom
 BRANDING_DIR=$CONFIG/omarchy/branding
 HOOK_DIR=$CONFIG/omarchy/hooks
 
@@ -90,10 +91,17 @@ install -Dm 644 "$SRC/applications/solaros-whatsapp.desktop" "$DATA/applications
 # -------------------------------------------------------------- the webapps
 # active.css is not in the repo: it is a copy of whichever palette matches the
 # current theme, and the two *-theme scripts below regenerate it.
-say "webapps -> $WEBAPP_DIR"
-mkdir -p "$WEBAPP_DIR"
-rm -rf "$WEBAPP_DIR/whatsapp" "$WEBAPP_DIR/tidal"
-cp -a "$SRC/webapps/whatsapp" "$SRC/webapps/tidal" "$WEBAPP_DIR/"
+# The directory names are the ones Chromium has registered. It tracks unpacked
+# extensions by absolute path, so renaming these unloads them until someone
+# re-adds them by hand -- not worth the tidier name.
+say "webapps -> $WEBAPP_WA"
+say "           $WEBAPP_TIDAL"
+for pair in "webapps/whatsapp-slim-encom:$WEBAPP_WA" "webapps/tidal-encom:$WEBAPP_TIDAL"; do
+  src=${pair%%:*}; dst=${pair#*:}
+  mkdir -p "$(dirname "$dst")"
+  rm -rf "$dst"
+  cp -a "$SRC/$src" "$dst"
+done
 "$BIN/solaros-whatsapp-theme" >/dev/null
 "$BIN/solaros-tidal-theme" >/dev/null
 
@@ -119,7 +127,7 @@ Installed. Two things this script cannot do for you:
      window open chrome://extensions, turn on Developer mode, then
      "Load unpacked" and pick:
 
-       $WEBAPP_DIR/whatsapp
-       $WEBAPP_DIR/tidal
+       $WEBAPP_WA
+       $WEBAPP_TIDAL
 
 EOF
