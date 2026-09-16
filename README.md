@@ -152,6 +152,7 @@ So you can undo any of it by hand:
 | `obsidian.css` | Obsidian — replaces the one Omarchy would generate |
 | `vscode.json` | Names the editor theme for Omarchy to activate |
 | `backgrounds/` | Fifteen wallpapers, ordered flat grid → grid in perspective → scenes → abstract |
+| `unlock.png` · `preview-unlock.png` | The Plymouth boot splash and its preview |
 | `hooks/` | Re-apply the webapp palettes on every theme switch |
 | `bin/` | The two palette-swap scripts the hooks call |
 | `webapps/` | The WhatsApp and TIDAL extensions |
@@ -166,6 +167,12 @@ Everything else Omarchy needs, it generates from `colors.toml` — Alacritty,
 Kitty, Foot, Neovim, Helix, tmux, the Chromium accent, the keyboard, and a VS
 Code theme. A file shipped here under the generated name wins; the templates
 only fill in what is missing.
+
+## The boot splash
+
+`omarchy plymouth set-by-theme solaros` takes `unlock.png` and the colours in
+`colors.toml` and makes them the Plymouth screen you see while the machine
+boots. `preview-unlock.png` is what the picker shows.
 
 ## Credits
 

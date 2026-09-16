@@ -36,7 +36,8 @@ say "theme -> $THEME_DIR"
 mkdir -p "$THEME_DIR"
 for f in colors.toml ghostty.conf hyprland.lua btop.theme icons.theme \
          gtk-4.0.css obsidian.css vscode.json shell.bar.toml shell.launcher.toml \
-         shell.notifications.toml STYLE.md preview.png preview-alt.png; do
+         shell.notifications.toml STYLE.md preview.png preview-alt.png \
+         unlock.png preview-unlock.png; do
   install -Dm 644 "$SRC/$f" "$THEME_DIR/$f"
 done
 rm -rf "$THEME_DIR/backgrounds" "$THEME_DIR/assets"
