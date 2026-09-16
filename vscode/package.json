@@ -1,0 +1,22 @@
+{
+  "name": "solaros-phosphor",
+  "displayName": "SolarOS Phosphor",
+  "description": "A restrained 1984 phosphor-green interface for SolarOS development systems.",
+  "version": "1.0.0",
+  "publisher": "solaros",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Themes"
+  ],
+  "contributes": {
+    "themes": [
+      {
+        "label": "SolarOS Phosphor 1984",
+        "uiTheme": "vs-dark",
+        "path": "./themes/solaros-phosphor-color-theme.json"
+      }
+    ]
+  }
+}

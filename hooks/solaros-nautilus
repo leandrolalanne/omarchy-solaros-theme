@@ -1,0 +1,26 @@
+#!/bin/bash
+
+set -euo pipefail
+
+theme_name=${1:-}
+gtk_config_dir="$HOME/.config/gtk-4.0"
+stylesheet="$gtk_config_dir/gtk.css"
+solaros_stylesheet="$HOME/.config/omarchy/themes/solaros/gtk-4.0.css"
+
+if [[ $theme_name == "solaros" ]]; then
+  mkdir -p "$gtk_config_dir"
+
+  if [[ -e $stylesheet && ! -L $stylesheet ]]; then
+    echo "SolarOS Nautilus CSS not activated: $stylesheet is an unmanaged file" >&2
+    exit 1
+  fi
+
+  if [[ -L $stylesheet && $(readlink -f "$stylesheet") != "$solaros_stylesheet" ]]; then
+    echo "SolarOS Nautilus CSS not activated: $stylesheet is managed elsewhere" >&2
+    exit 1
+  fi
+
+  ln -sfn "$solaros_stylesheet" "$stylesheet"
+elif [[ -L $stylesheet && $(readlink -f "$stylesheet") == "$solaros_stylesheet" ]]; then
+  rm -f "$stylesheet"
+fi

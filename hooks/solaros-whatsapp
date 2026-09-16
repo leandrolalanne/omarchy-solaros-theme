@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# Omarchy passes the newly selected theme slug as $1.
+exec "$HOME/.local/bin/solaros-whatsapp-theme" "${1:-}"

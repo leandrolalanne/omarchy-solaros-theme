@@ -1,7 +1,7 @@
 # SolarOS
 
-A cold-phosphor terminal theme for [Omarchy](https://omarchy.org). Green on
-black, evenly translucent, no blur — Flynn's basement, not a neon arcade.
+A cold-phosphor desktop for [Omarchy](https://omarchy.org). Green on black,
+evenly translucent, no blur — Flynn's basement, not a neon arcade.
 
 ![SolarOS](preview.png)
 
@@ -14,107 +14,95 @@ black, evenly translucent, no blur — Flynn's basement, not a neon arcade.
 
 SolarOS is the operating system on Kevin Flynn's server in *Tron: Legacy* —
 the prompt reads `SolarOS 4.0.1` when Sam wipes the dust off the terminal. This
-theme is an unpaid fan project built around that look, released free under MIT.
-It is not affiliated with Disney or with anyone else who owns a piece of *Tron*,
-and it sells nothing. If a rights holder would rather it did not exist, say so
-and it comes down.
+is an unpaid fan project built around that look, released free under MIT. It is
+not affiliated with Disney or with anyone else who owns a piece of *Tron*, and
+it sells nothing. If a rights holder would rather it did not exist, say so and
+it comes down.
 
 ## Install
+
+**The whole thing** — theme, hooks, webapp skins, launchers, editor colours:
+
+```bash
+git clone https://github.com/leandrolalanne/omarchy-solaros-theme
+cd omarchy-solaros-theme
+./install.sh
+omarchy theme set solaros
+```
+
+`install.sh` is idempotent: it overwrites what it owns and leaves everything
+else alone, so re-running it after a `git pull` is how you update.
+
+**Just the Omarchy theme**, if you only want the colours and wallpapers:
+
+```bash
+./install.sh --theme-only
+```
+
+## Why not `omarchy theme install`?
+
+That works, and it is the shortest path to the palette:
 
 ```
 omarchy theme install https://github.com/leandrolalanne/omarchy-solaros-theme
 ```
 
-Or from the Omarchy menu: **Install → Style → Theme**, then paste the URL.
+But Omarchy strips anything that executes code from a theme it installed by
+URL and regenerates it from `colors.toml`. For this theme that means
+**`hyprland.lua` is removed**, and with it the even 0.88 window opacity, the
+gradient borders and the shadows. The palette survives; the depth does not.
 
-## Getting the full look
-
-Omarchy strips anything that executes code from a theme installed by URL, and
-regenerates it from `colors.toml`. For this theme that means **`hyprland.lua`
-is removed**, and with it the even 0.88 window opacity, the gradient borders
-and the shadows. The palette survives; the depth does not.
-
-Two ways around it, both after installing:
-
-**Copy the Hyprland module in by hand**
-
-```bash
-curl -o ~/.config/omarchy/themes/solaros/hyprland.lua \
-  https://raw.githubusercontent.com/leandrolalanne/omarchy-solaros-theme/main/hyprland.lua
-omarchy theme set solaros
-```
-
-**Or install the theme by cloning it yourself**, which Omarchy treats as your
-own theme and leaves untouched:
-
-```bash
-git clone https://github.com/leandrolalanne/omarchy-solaros-theme \
-  ~/.config/omarchy/themes/solaros
-rm -rf ~/.config/omarchy/themes/solaros/.git
-omarchy theme set solaros
-```
-
-The `.git` removal is what matters: Omarchy decides whether a theme is yours or
-cloned by looking for that directory.
-
-### The hook
-
-`hooks/solaros-hyprland-opacity` re-applies the window opacity after a theme
-switch or a reboot. It exists because other themes rewrite Hyprland's decoration
-settings globally when they are active, and whichever hook finishes last wins.
-Install it if you run more than one theme that touches Hyprland:
-
-```bash
-omarchy hook install theme-set hooks/solaros-hyprland-opacity
-```
-
-It exits immediately unless SolarOS is the current theme.
+Omarchy decides whether a theme is yours or cloned by looking for a `.git`
+directory inside it — which is why `install.sh` copies files out of the clone
+instead of making the clone itself the theme.
 
 ## The font
 
-Not shipped — it is a package, and themes in Omarchy cannot set fonts anyway,
-since `omarchy font set` is global. Two lines get you the type in the
-screenshots:
+Not shipped. Fonts in Omarchy are global — `omarchy font set` rewrites every
+terminal config at once, and no theme touches any of it. Two lines get you the
+type in the screenshots:
 
 ```bash
 omarchy pkg add ttf-jetbrains-mono-nerd
 omarchy font set "JetBrainsMono Nerd Font"
 ```
 
-## Extras
+## The browser extensions
 
-`extras/omarchy-terminal-welcome` replaces Omarchy's terminal greeting with the
-SolarOS banner shown in the preview. It is branding, not theming — it prints
-only under this theme and exits for every other one.
+`webapps/whatsapp` and `webapps/tidal` are unpacked MV3 extensions that restyle
+WhatsApp Web and TIDAL to match the desktop. Chromium tracks unpacked
+extensions by absolute path and will not pick them up on its own. Once per
+machine, in each webapp window: `chrome://extensions` → Developer mode →
+**Load unpacked** → point it at
+`~/.config/omarchy/webapps/solaros/whatsapp` and `.../tidal`.
 
-```bash
-mkdir -p ~/.config/omarchy/branding
-cp extras/solaros-ascii.txt ~/.config/omarchy/branding/
-cp extras/omarchy-terminal-welcome ~/.local/bin/
-chmod +x ~/.local/bin/omarchy-terminal-welcome
-```
-
-The script prints `solaros-ascii.txt`, so both files are needed.
-
-`~/.local/bin` comes before the packaged binary on `PATH`, so the copy wins.
-Delete it to get the stock greeting back.
+Both are theme-scoped. On any other theme the hooks swap in `neutral.css` and
+the sites go back to stock.
 
 ## What is in here
 
-| File | What it themes |
+| Path | What it is |
 |---|---|
 | `colors.toml` | The palette everything else is generated from |
 | `ghostty.conf` | Terminal colours — regenerated from `colors.toml` on a URL install |
 | `hyprland.lua` | Window opacity, borders, shadows. **Stripped on a URL install** |
 | `btop.theme` · `icons.theme` | System monitor, icon set |
-| `shell.bar.toml` · `shell.launcher.toml` · `shell.notifications.toml` | Omarchy shell surfaces |
+| `shell.*.toml` | Omarchy shell surfaces — bar, launcher, notifications |
 | `gtk-4.0.css` | GTK4 apps, Nautilus included |
 | `obsidian.css` | Obsidian |
 | `backgrounds/` | Fifteen wallpapers, ordered flat grid → grid in perspective → scenes → abstract |
-| `STYLE.md` | The typography contract the theme follows |
+| `hooks/` | Re-apply the Hyprland opacity, the Nautilus stylesheet and the webapp palettes on every theme switch |
+| `bin/` | The WhatsApp launcher and the two palette-swap scripts the hooks call |
+| `webapps/` | The WhatsApp and TIDAL extensions |
+| `applications/` | Desktop entry for the WhatsApp webapp |
+| `vscode/` | SolarOS Phosphor 1984, the editor colour theme |
+| `openrgb/` | Keyboard lighting profile |
+| `extras/` | The terminal banner — branding, not theming |
+| `STYLE.md` | The typography contract the whole suite follows |
 
-`STYLE.md` describes the wider suite this theme came from, so it mentions
-surfaces this repository does not ship.
+Two files are generated rather than tracked: each webapp's `active.css` (a copy
+of whichever palette matches the current theme, written by the hooks) and the
+theme's `vscode.json` (written by Omarchy from `colors.toml`).
 
 ## Credits
 
@@ -123,5 +111,5 @@ Wallpapers and assets, with their origin, are listed in
 
 ## License
 
-MIT for the theme's own files — see [LICENSE](LICENSE). Wallpapers that came
+MIT for this project's own files — see [LICENSE](LICENSE). Wallpapers that came
 from elsewhere keep their own terms; see [CREDITS.md](CREDITS.md).

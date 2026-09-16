@@ -1,0 +1,44 @@
+:root {
+  --solaros-enabled: 1;
+  --solaros-tidal-bg: #010605;
+  --solaros-tidal-bg-raised: #020908;
+  --solaros-tidal-fg: #a5ffd8;
+  --solaros-tidal-accent: #a5ffd8;
+  --solaros-tidal-green: #7ffff0;
+  --solaros-tidal-muted: #94d8c8;
+  --solaros-tidal-selection: #103e34;
+  --solaros-tidal-border: rgba(143, 255, 227, 0.34);
+  --solaros-tidal-glow: rgba(82, 205, 181, 0.27);
+}
+
+/* Live typography reinforcement. TIDAL assigns its display face directly to
+ * card and row descendants, so body inheritance alone is not sufficient. */
+html[data-solaros-theme] body :where(
+  h1, h2, h3, h4, h5, h6,
+  p, span, a, button, label, time,
+  input, textarea, select, option,
+  [role="button"], [role="link"], [role="tab"], [role="menuitem"],
+  [aria-label],
+  [class*="title" i], [class*="name" i],
+  [data-test*="title" i], [data-testid*="title" i]
+) {
+  font-family:
+    "JetBrainsMono Nerd Font",
+    "JetBrains Mono",
+    "IBM Plex Mono",
+    "Noto Color Emoji",
+    monospace !important;
+  font-variant-ligatures: none !important;
+}
+
+html[data-solaros-theme] body :where(
+  [class*="track-title" i],
+  [class*="item-title" i],
+  [data-test*="track-title" i],
+  [data-testid*="track-title" i]
+) {
+  color: var(--solaros-tidal-fg) !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.02em;
+  text-shadow: 0 0 9px var(--solaros-tidal-glow);
+}

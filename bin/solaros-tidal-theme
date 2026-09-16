@@ -1,0 +1,25 @@
+#!/bin/bash
+
+set -euo pipefail
+
+extension_dir="$HOME/.config/omarchy/webapps/solaros/tidal"
+theme_name="${1:-}"
+
+if [[ -z $theme_name ]]; then
+  theme_name=$(cat "$HOME/.local/state/omarchy/current/theme.name" 2>/dev/null || true)
+fi
+
+case "$theme_name" in
+  solaros)
+    palette="$extension_dir/solaros.css"
+    ;;
+  *)
+    palette="$extension_dir/neutral.css"
+    ;;
+esac
+
+temporary=$(mktemp "$extension_dir/.active.css.XXXXXX")
+trap 'rm -f "$temporary"' EXIT
+cp "$palette" "$temporary"
+mv -f "$temporary" "$extension_dir/active.css"
+trap - EXIT

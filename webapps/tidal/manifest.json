@@ -1,0 +1,33 @@
+{
+  "manifest_version": 3,
+  "name": "TIDAL — SolarOS Phosphor",
+  "version": "1.0.0",
+  "description": "Theme-scoped SolarOS typography and phosphor accents for TIDAL Web.",
+  "content_scripts": [
+    {
+      "matches": [
+        "https://tidal.com/*",
+        "https://listen.tidal.com/*"
+      ],
+      "css": [
+        "tidal.css",
+        "active.css"
+      ],
+      "js": [
+        "theme-loader.js"
+      ],
+      "run_at": "document_start"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "active.css"
+      ],
+      "matches": [
+        "https://tidal.com/*",
+        "https://listen.tidal.com/*"
+      ]
+    }
+  ]
+}

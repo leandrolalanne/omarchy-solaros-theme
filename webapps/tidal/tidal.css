@@ -1,0 +1,174 @@
+/*
+ * TIDAL // SolarOS phosphor layer
+ *
+ * Keep TIDAL's layout, album artwork and playback behavior intact. Styling is
+ * limited to typography, text hierarchy, focus, accents and lightweight chrome.
+ */
+
+html[data-solaros-theme] {
+  color-scheme: dark;
+  accent-color: var(--solaros-tidal-accent);
+  background: var(--solaros-tidal-bg) !important;
+}
+
+html[data-solaros-theme] body,
+html[data-solaros-theme] button,
+html[data-solaros-theme] input,
+html[data-solaros-theme] textarea,
+html[data-solaros-theme] select,
+html[data-solaros-theme] [contenteditable="true"] {
+  font-family:
+    "JetBrainsMono Nerd Font",
+    "JetBrains Mono",
+    "IBM Plex Mono",
+    "Noto Color Emoji",
+    monospace !important;
+  font-variant-ligatures: none !important;
+  letter-spacing: 0.015em;
+}
+
+html[data-solaros-theme] body {
+  background-color: var(--solaros-tidal-bg) !important;
+  color: var(--solaros-tidal-fg) !important;
+}
+
+/* TIDAL assigns foreground colors deep in its component tree. Restrict the
+ * override to text-bearing elements so artwork and media remain untouched. */
+html[data-solaros-theme] body :where(
+  h1, h2, h3, h4, h5, h6,
+  p, span, a, button, label, time,
+  input, textarea, select, option,
+  [role="button"], [role="link"], [role="tab"], [role="menuitem"],
+  [aria-label]
+) {
+  font-family:
+    "JetBrainsMono Nerd Font",
+    "JetBrains Mono",
+    "IBM Plex Mono",
+    "Noto Color Emoji",
+    monospace !important;
+  font-variant-ligatures: none !important;
+  color: var(--solaros-tidal-fg) !important;
+}
+
+html[data-solaros-theme] body :where(
+  [class*="secondary" i],
+  [class*="subtitle" i],
+  [class*="sub-title" i],
+  [class*="metadata" i],
+  [class*="description" i],
+  [class*="caption" i],
+  time
+) {
+  color: var(--solaros-tidal-muted) !important;
+}
+
+html[data-solaros-theme] body :where(
+  a:hover,
+  button:hover,
+  [role="button"]:hover,
+  [role="link"]:hover,
+  [aria-current="page"],
+  [aria-selected="true"],
+  [data-active="true"]
+),
+html[data-solaros-theme] body :where(
+  [aria-current="page"],
+  [aria-selected="true"],
+  [data-active="true"]
+) :where(span, svg) {
+  color: var(--solaros-tidal-accent) !important;
+  text-shadow: 0 0 12px var(--solaros-tidal-glow);
+}
+
+html[data-solaros-theme] body :where(h1, h2, h3) {
+  color: var(--solaros-tidal-green) !important;
+  font-weight: 650 !important;
+  letter-spacing: 0.035em;
+  text-shadow: 0 0 16px var(--solaros-tidal-glow);
+}
+
+/* TIDAL sets an explicit display font on many card and row titles. Apply the
+ * terminal face at the text node itself so track, album and playlist names do
+ * not fall back to the product UI font. */
+html[data-solaros-theme] body :where(
+  [class*="title" i],
+  [class*="name" i],
+  [data-test*="title" i],
+  [data-testid*="title" i]
+) {
+  font-family:
+    "JetBrainsMono Nerd Font",
+    "JetBrains Mono",
+    "IBM Plex Mono",
+    "Noto Color Emoji",
+    monospace !important;
+}
+
+html[data-solaros-theme] body :where(
+  [class*="track-title" i],
+  [class*="item-title" i],
+  [data-test*="track-title" i],
+  [data-testid*="track-title" i]
+) {
+  color: var(--solaros-tidal-fg) !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.02em;
+  text-shadow: 0 0 9px var(--solaros-tidal-glow);
+}
+
+html[data-solaros-theme] body :where(header, nav, aside, footer, [role="navigation"]) {
+  border-color: var(--solaros-tidal-border) !important;
+}
+
+html[data-solaros-theme] body :where(
+  button,
+  [role="button"],
+  [role="tab"],
+  a,
+  input,
+  textarea,
+  select,
+  [contenteditable="true"]
+):focus-visible {
+  outline: 1px solid var(--solaros-tidal-accent) !important;
+  outline-offset: 2px !important;
+  box-shadow: 0 0 0 3px var(--solaros-tidal-glow) !important;
+}
+
+html[data-solaros-theme] body :where(input, textarea, select, [contenteditable="true"]) {
+  caret-color: var(--solaros-tidal-accent) !important;
+  border-color: var(--solaros-tidal-border) !important;
+}
+
+html[data-solaros-theme] body :where(input[type="range"], progress) {
+  accent-color: var(--solaros-tidal-accent) !important;
+}
+
+html[data-solaros-theme] ::selection {
+  color: var(--solaros-tidal-fg) !important;
+  background: var(--solaros-tidal-selection) !important;
+}
+
+html[data-solaros-theme] {
+  scrollbar-color: var(--solaros-tidal-muted) transparent;
+  scrollbar-width: thin;
+}
+
+html[data-solaros-theme] ::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+html[data-solaros-theme] ::-webkit-scrollbar-thumb {
+  background: var(--solaros-tidal-muted);
+  border: 2px solid transparent;
+  border-radius: 0;
+  background-clip: padding-box;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html[data-solaros-theme] * {
+    scroll-behavior: auto !important;
+  }
+}

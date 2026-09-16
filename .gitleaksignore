@@ -1,0 +1,4 @@
+# El campo "key" de un manifest MV3 es la clave PÚBLICA que fija el ID de la
+# extensión — va en el manifest a propósito y es lo que mantiene el mismo ID
+# entre instalaciones. La privada es un .pem y no está en este repo.
+webapps/whatsapp/manifest.json:generic-api-key:5

@@ -1,0 +1,426 @@
+:root {
+  --solaros-enabled: 1;
+  --solaros-accent: #8fffe3;
+  /* Bubble surfaces went neutral gray (2026-08-27): the teal wash competed
+   * with the rest of the SolarOS/SolarOS family, where green is reserved for
+   * functional signals (read ticks, the active-row rail, the scrollbar)
+   * instead of painted across surfaces. --solaros-message-out reuses the
+   * exact accepted active-row gray (#202625, see the cell-frame-container
+   * rule below) so bubbles and the selected row read as one family. Text/
+   * meta lost their mint tint for the same reason. --solaros-message-highlight
+   * is intentionally left teal — it's shared with the accepted scrollbar
+   * thumb and untouched by this pass. */
+  --solaros-message-out: #202625;
+  --solaros-message-out-deeper: #171b1a;
+  /* 2026-08-27: incoming got a deliberate, restrained green cast (distinct
+   * hue, not just darker/lighter) so the two bubble sides read apart at a
+   * glance without going back to the earlier heavy teal wash. */
+  --solaros-message-in: #14231d;
+  --solaros-message-in-deeper: #0c1512;
+  --solaros-message-highlight: #174a40;
+  --solaros-message-text: #f1f1ef;
+  /* 2026-08-27 (19:33): nudged toward sage instead of neutral gray, and
+   * --solaros-bg/--solaros-line added — both sampled from a Spotify-web
+   * reference the user compared WhatsApp against. Flat black (#000) becomes
+   * a barely-green near-black, and three structural container edges (header,
+   * search field, list/conversation divider) get a matching hairline. See
+   * Phase 13 below. */
+  --solaros-message-meta: #7d998e;
+  --solaros-bg: #0a1310;
+  --solaros-line: #1e4438;
+}
+
+/* Restore the accepted WDS bubble palette at every layer where WhatsApp
+ * redeclares its Color Refresh theme. No DOM or geometry selectors involved. */
+html[data-solaros-theme="true"],
+html[data-solaros-theme="true"] .dark,
+html[data-solaros-theme="true"] .color-refresh,
+html[data-solaros-theme="true"] .app-wrapper-web.app-wrapper-web {
+  --WDS-systems-bubble-surface-outgoing: var(--solaros-message-out) !important;
+  --WDS-systems-bubble-surface-outgoing-RGB: 32, 38, 37 !important;
+  --WDS-systems-bubble-surface-outgoing-rgb: 32, 38, 37 !important;
+  --WDS-systems-bubble-surface-incoming: var(--solaros-message-in) !important;
+  --WDS-systems-bubble-surface-incoming-RGB: 20, 35, 29 !important;
+  --WDS-systems-bubble-surface-incoming-rgb: 20, 35, 29 !important;
+  --WDS-systems-bubble-surface-overlay: var(--solaros-message-in-deeper) !important;
+  --WDS-systems-bubble-content-deemphasized: var(--solaros-message-meta) !important;
+
+  --outgoing-background: var(--solaros-message-out) !important;
+  --outgoing-background-rgb: 32, 38, 37 !important;
+  --outgoing-background-deeper: var(--solaros-message-out-deeper) !important;
+  --outgoing-background-highlight: var(--solaros-message-highlight) !important;
+  --incoming-background: var(--solaros-message-in) !important;
+  --incoming-background-rgb: 20, 35, 29 !important;
+  --incoming-background-deeper: var(--solaros-message-in-deeper) !important;
+  --incoming-background-highlight: var(--solaros-message-highlight) !important;
+  --message-primary: var(--solaros-message-text) !important;
+  --message-secondary: var(--solaros-message-meta) !important;
+}
+
+/* Phase 1: paint only the mounted conversation canvas. */
+html[data-solaros-theme="true"] #main,
+html[data-solaros-theme="true"] #main [data-testid="conversation-panel-body"] {
+  background-color: var(--solaros-bg) !important;
+  background-image: none !important;
+}
+
+/* Preserve WhatsApp's composer behavior and controls while restoring the
+ * accepted square terminal bar and native blinking block caret. */
+html[data-solaros-theme="true"] #main footer div:has([contenteditable="true"]) {
+  border-radius: 0 !important;
+}
+
+html[data-solaros-theme="true"] #main footer > div:has([contenteditable="true"]) {
+  box-shadow: none !important;
+}
+
+html[data-solaros-theme="true"] #main footer [contenteditable="true"] {
+  border-radius: 0 !important;
+  caret-color: var(--solaros-accent) !important;
+  caret-shape: block !important;
+}
+
+html[data-solaros-theme="true"] #main footer [contenteditable="true"]:focus,
+html[data-solaros-theme="true"] #main footer [contenteditable="true"]:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Phase 2: square only the visible boxes in the stock chat-list panel.
+ * Avatars, navigation icons, bubbles, and conversation controls stay stock. */
+html[data-solaros-theme="true"] #side :where(
+  input,
+  [role="textbox"],
+  [role="searchbox"],
+  [role="search"],
+  [data-testid*="search"]
+),
+html[data-solaros-theme="true"] #side [role="tablist"] :where(
+  button,
+  [role="button"],
+  [role="tab"]
+),
+html[data-solaros-theme="true"] #pane-side [data-testid="cell-frame-container"] {
+  border-radius: 0 !important;
+}
+
+/* Phase 3: each current message is mounted below a stable conv-msg testid.
+ * Within it, target the exact four-class messageBackground intersection. */
+html[data-solaros-theme="true"] #main [data-testid^="conv-msg-"]
+  .x1liijdw.xu342n7.xelbjmh.x16pgt24 {
+  border-radius: 0 !important;
+  border-start-start-radius: 0 !important;
+  border-start-end-radius: 0 !important;
+  border-end-end-radius: 0 !important;
+  border-end-start-radius: 0 !important;
+}
+
+/* Phase 3b: the first message of a consecutive group keeps StyleX's default
+ * 7.5px radius on whichever single corner is its "tail" side, because that
+ * one flatten class is omitted there. Live inspection confirmed all three-
+ * of-four partial combinations of the same four classes are what remains
+ * rounded; force all four corners flat on each of them too. */
+html[data-solaros-theme="true"] #main [data-testid^="conv-msg-"] .xu342n7.xelbjmh.x16pgt24,
+html[data-solaros-theme="true"] #main [data-testid^="conv-msg-"] .x1liijdw.xelbjmh.x16pgt24,
+html[data-solaros-theme="true"] #main [data-testid^="conv-msg-"] .x1liijdw.xu342n7.x16pgt24,
+html[data-solaros-theme="true"] #main [data-testid^="conv-msg-"] .x1liijdw.xu342n7.xelbjmh {
+  border-radius: 0 !important;
+  border-start-start-radius: 0 !important;
+  border-start-end-radius: 0 !important;
+  border-end-end-radius: 0 !important;
+  border-end-start-radius: 0 !important;
+}
+
+/* Phase 4: the search field's painted surface is an ancestor of its semantic
+ * input. Square only containers on that search branch; do not touch siblings,
+ * chat rows, avatars, or navigation controls. */
+html[data-solaros-theme="true"] #side :where(div, form):has(
+  :where(
+    input[type="search"],
+    [role="searchbox"],
+    [role="textbox"][aria-label*="search" i],
+    [role="textbox"][aria-label*="buscar" i],
+    [data-testid*="search" i]
+  )
+) {
+  border-radius: 0 !important;
+  border-start-start-radius: 0 !important;
+  border-start-end-radius: 0 !important;
+  border-end-end-radius: 0 !important;
+  border-end-start-radius: 0 !important;
+}
+
+/* Phase 5: terminalize only the navigation and header chrome. Paint each
+ * full-size direct surface so WhatsApp's translucent layer cannot show through. */
+html[data-solaros-theme="true"] #app {
+  --WDS-components-surface-nav-bar: var(--solaros-bg) !important;
+  --panel-header-background: var(--solaros-bg) !important;
+}
+
+html[data-solaros-theme="true"] #app header {
+  background-color: var(--solaros-bg) !important;
+  background-image: none !important;
+}
+
+html[data-solaros-theme="true"] :where(
+  #side,
+  #side > header,
+  #side > header > div,
+  #side > div,
+  #pane-side,
+  #main > header,
+  #main > header > div,
+  #app [role="navigation"],
+  #app [role="navigation"] > div
+) {
+  background-color: var(--solaros-bg) !important;
+  background-image: none !important;
+}
+
+html[data-solaros-theme="true"] #side,
+html[data-solaros-theme="true"] #side *,
+html[data-solaros-theme="true"] #app [role="navigation"],
+html[data-solaros-theme="true"] #app [role="navigation"] * {
+  font-family: "JetBrainsMono Nerd Font", "JetBrains Mono", monospace !important;
+}
+
+/* Phase 6: keep the proven search, filter, and chat-row surfaces flat black. */
+html[data-solaros-theme="true"] #side :where(div, form):has(
+  :where(
+    input[type="search"],
+    [role="searchbox"],
+    [role="textbox"][aria-label*="search" i],
+    [role="textbox"][aria-label*="buscar" i],
+    [data-testid*="search" i]
+  )
+),
+html[data-solaros-theme="true"] #side [role="tablist"],
+html[data-solaros-theme="true"] #side [role="tablist"] :where(
+  button,
+  [role="button"],
+  [role="tab"]
+),
+html[data-solaros-theme="true"] #pane-side,
+html[data-solaros-theme="true"] #pane-side [data-testid="cell-frame-container"],
+html[data-solaros-theme="true"] #pane-side [data-testid="cell-frame-container"] > div {
+  background-color: var(--solaros-bg) !important;
+  background-image: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+/* Flat terminal-gray active row with a phosphor cursor rail.
+ * x4wrhlh is the current WAWebCellFrame chatActive surface; semantic forms
+ * remain as fallbacks for future DOM changes. */
+html[data-solaros-theme="true"] #pane-side
+  [data-testid="cell-frame-container"] {
+  transition: box-shadow 120ms ease !important;
+}
+
+html[data-solaros-theme="true"] #pane-side
+  [data-testid="cell-frame-container"].x4wrhlh,
+html[data-solaros-theme="true"] #pane-side
+  [data-testid="cell-frame-container"][aria-selected="true"],
+html[data-solaros-theme="true"] #pane-side
+  [aria-selected="true"] [data-testid="cell-frame-container"] {
+  background-color: #202625 !important;
+  box-shadow: inset 5px 0 var(--solaros-accent) !important;
+}
+
+/* Phase 6 paints each row's direct content surfaces black. On the active row
+ * those surfaces must be transparent so the proven rail on the black root is
+ * not covered by its own children. */
+html[data-solaros-theme="true"] #pane-side
+  [data-testid="cell-frame-container"].x4wrhlh > div,
+html[data-solaros-theme="true"] #pane-side
+  [data-testid="cell-frame-container"][aria-selected="true"] > div,
+html[data-solaros-theme="true"] #pane-side
+  [aria-selected="true"] [data-testid="cell-frame-container"] > div {
+  background-color: transparent !important;
+}
+
+/* Phase 7: profile/group photos and their fallback icons render inside the
+ * shared "subgroup-identity" component everywhere (chat list, conversation
+ * header, contact/group info). Squaring only this testid avoids the generic
+ * border-radius:50% atomic classes that unrelated circular buttons (e.g. the
+ * emoji reaction button) also happen to reuse elsewhere in the app. */
+html[data-solaros-theme="true"] [data-testid="subgroup-identity"],
+html[data-solaros-theme="true"] [data-testid="subgroup-identity"] * {
+  border-radius: 0 !important;
+}
+
+/* Phase 7b: (reverted) tried a grayscale tint on avatars first, but the
+ * user relies on photo color to recognize who's messaging at a glance —
+ * back to full color, with an outline instead (see below). Went
+ * white → --solaros-line → back to white, 2px, per the last round of
+ * feedback. outline-offset matches -width so the band sits fully inside
+ * the avatar box instead of straddling its edge. */
+html[data-solaros-theme="true"] [data-testid="subgroup-identity"]:not(:has(svg:has(> mask > g > circle))) {
+  outline: 1px solid rgba(255, 255, 255, 0.12) !important;
+  outline-offset: -1px;
+}
+
+/* Phase 8: individual 1:1 contact photos are not styled via CSS radius at
+ * all. They mount as an inline SVG that defines its own <mask> with a
+ * <circle>, wraps the real <image> in a <g mask="..."> using it, then draws
+ * a separate stroked <circle> as the decorative outline ring. Anchor on that
+ * exact structure (svg containing mask > g > circle), not on generated class
+ * names, since it is unique to this avatar technique across the whole app.
+ * The CSS `mask` property overrides the SVG presentation attribute, so this
+ * removes the circular clip; the trailing outline circle is hidden and
+ * replaced with an equivalent square outline on the svg itself, matching
+ * the group/fallback outline above (white, 2px). (The subgroup-identity
+ * rule above excludes wrappers containing this svg, so 1:1 photos get
+ * exactly one outline — from here — instead of two a pixel apart.) */
+html[data-solaros-theme="true"] svg:has(> mask > g > circle) {
+  outline: 1px solid rgba(255, 255, 255, 0.12) !important;
+  outline-offset: -1px;
+}
+
+html[data-solaros-theme="true"] svg:has(> mask > g > circle) > g[mask] {
+  mask: none !important;
+}
+
+html[data-solaros-theme="true"] svg:has(> mask > g > circle) > g:last-child circle {
+  display: none !important;
+}
+
+/* Phase 9: terminal-style scrollbars everywhere (Chromium/WebKit pseudo-
+ * elements; not tied to any WhatsApp-generated class, so no live discovery
+ * needed). Thin, square, phosphor-green thumb on a black track.
+ *
+ * WhatsApp sets the standard `scrollbar-color`/`scrollbar-width` properties
+ * directly on its scrollable containers (#pane-side, the conversation
+ * message pane, etc.). In Chromium, a non-"auto" `scrollbar-color` wins over
+ * the legacy ::-webkit-scrollbar-* pseudo-elements below, which is why those
+ * containers stayed WhatsApp's default translucent gray/rounded pill. Reset
+ * both to `auto` first so Chromium falls back to our webkit-styled path. */
+html[data-solaros-theme="true"] * {
+  scrollbar-color: auto !important;
+  scrollbar-width: auto !important;
+}
+
+html[data-solaros-theme="true"] ::-webkit-scrollbar {
+  width: 8px !important;
+  height: 8px !important;
+}
+
+html[data-solaros-theme="true"] ::-webkit-scrollbar-button {
+  display: none !important;
+}
+
+html[data-solaros-theme="true"] ::-webkit-scrollbar-track {
+  background: var(--solaros-bg) !important;
+}
+
+html[data-solaros-theme="true"] ::-webkit-scrollbar-thumb {
+  background: var(--solaros-message-highlight) !important;
+  border-radius: 0 !important;
+}
+
+html[data-solaros-theme="true"] ::-webkit-scrollbar-thumb:hover {
+  background: var(--solaros-accent) !important;
+}
+
+/* Phase 10: phosphor-green text selection instead of the browser default
+ * blue highlight. Standard pseudo-element; no WhatsApp classes involved. */
+html[data-solaros-theme="true"] ::selection {
+  background: var(--solaros-accent);
+  color: #000000;
+}
+
+/* Phase 11: read-receipt double-check ("wds-ic-read") in phosphor green
+ * instead of translucent white. No data-testid/data-icon on this SVG, so
+ * anchored on the icon's own path data (same technique as the avatar mask
+ * fix) rather than a generated class name. `fill` as a CSS property beats
+ * the element's `fill="currentColor"` presentation attribute outright. */
+html[data-solaros-theme="true"] svg path[d^="M14.73 6.01a1 1 0 0 1 1.41-.15"] {
+  fill: var(--solaros-accent) !important;
+}
+
+/* Phase 12: the "new chat" compose button is the one control left on
+ * WhatsApp's stock brand green (#21c063), never re-skinned — the loudest,
+ * most saturated patch of color in the app and the only one not from the
+ * SolarOS palette. Verified live via DevTools (button.html-button, background
+ * rgb(33,192,99), 40x40, no data-testid — accessible name "Nuevo chat" is
+ * the only stable anchor). Traded the solid fill for a flat ring, same
+ * treatment Spotify gives its own brand-green Play button: color marks an
+ * icon, not a CTA surface. No gradient, no box-shadow/glow — flat border
+ * only. Scoped to the chat-list header so no other "Nuevo chat"-labelled
+ * control elsewhere in the app is touched. */
+html[data-solaros-theme="true"] #side button[aria-label="Nuevo chat" i] {
+  background-color: transparent !important;
+  border: 1.5px solid var(--solaros-accent) !important;
+}
+
+html[data-solaros-theme="true"] #side button[aria-label="Nuevo chat" i] svg {
+  fill: var(--solaros-accent) !important;
+}
+
+/* Phase 13: thin mint hairline frames on three structural container edges —
+ * sampled from the same Spotify-web reference as --solaros-bg above. Narrower
+ * in scope on purpose than the white per-element outlines rejected in
+ * 1.1.19/1.1.20: one muted, low-contrast color, three edges total, never
+ * applied to individual rows or bubbles. */
+/* `#side > header` (both this rule's original target and one of Phase 5's
+ * :where() entries) never matched anything: verified live via DevTools,
+ * #side and the chat-list header are siblings under an unnamed flex parent,
+ * not ancestor/descendant. The header itself is nested (an inner
+ * <header class="x570efc..."> sits inside the outer one), and that inner
+ * element's own box is narrower than the full row — it excludes the ⋮/✚
+ * icon cluster, which is why the border only ever covered part of the row.
+ * `header[data-testid="chatlist-header"]` is the outer, stable anchor and
+ * spans the full header row. Color matches Phase 14's chat-row separator
+ * (white, not --solaros-line) so both header bottoms and the row hairlines
+ * read as one consistent line color. */
+html[data-solaros-theme="true"] header[data-testid="chatlist-header"] {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12) !important;
+}
+
+/* The search branch has more than one div/form ancestor that :has() the
+ * input (a padded outer wrapper around a tighter inner chip). Bordering
+ * every match at once drew two concentric rectangles a few pixels apart.
+ * :not(:has(...)) keeps only the innermost match — the one visually hugging
+ * the icon and input — so a single hairline is drawn. */
+html[data-solaros-theme="true"] #side :where(div, form):has(
+  :where(
+    input[type="search"],
+    [role="searchbox"],
+    [role="textbox"][aria-label*="search" i],
+    [role="textbox"][aria-label*="buscar" i],
+    [data-testid*="search" i]
+  )
+):not(:has(:where(div, form):has(
+  :where(
+    input[type="search"],
+    [role="searchbox"],
+    [role="textbox"][aria-label*="search" i],
+    [role="textbox"][aria-label*="buscar" i],
+    [data-testid*="search" i]
+  )
+))) {
+  border: 1px solid var(--solaros-line) !important;
+}
+
+html[data-solaros-theme="true"] #side {
+  border-right: 1px solid var(--solaros-line) !important;
+}
+
+/* Phase 14: thin white separator under each unselected chat-list row.
+ * Same cell-frame-container anchor as the active-row rail/background rules
+ * above (Phase 6). Selected row is excluded — it already carries its own
+ * solid fill + accent rail and a hairline across it would cut through that. */
+html[data-solaros-theme="true"] #pane-side
+  [data-testid="cell-frame-container"]:not([aria-selected="true"]) {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12) !important;
+}
+
+/* Phase 15: hairline under the conversation header (contact name/avatar bar
+ * in #main), matching the same white separator used on the chatlist-header
+ * (Phase 13, just updated) and the chat-row hairlines (Phase 14) rather than
+ * --solaros-accent (too thick/mismatched) or --solaros-line (a different green
+ * from the row separators). Same #main > header anchor Phase 5 already
+ * paints the background on. */
+html[data-solaros-theme="true"] #main > header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12) !important;
+}
