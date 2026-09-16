@@ -63,7 +63,7 @@ o.window("^chrome-web\\.whatsapp\\.com__-Default$", {
 -- Regla de capas de las superficies del shell. blur = false: ENCOM no usa
 -- difuminado; la regla se mantiene para conservar el match si se reactiva.
 hl.layer_rule({
-  name = "encom-shell-glass",
+  name = "solaros-shell-glass",
   match = {
     namespace = "^(omarchy-bar|omarchy-menu|omarchy-notifications|omarchy-osd|omarchy-reminders|omarchy-polkit|omarchy-network-qr|omarchy-image-selector|omarchy-emojis|omarchy-clipboard|omarchy-keyboard-panel|omarchy-lock-preview)$",
   },

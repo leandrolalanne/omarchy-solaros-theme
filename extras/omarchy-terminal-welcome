@@ -13,7 +13,7 @@ fi
 
 # This is theme branding, not a global shell banner.
 case "$theme" in
-  encom) ;;
+  solaros) ;;
   640k) ;;
   *) exit 0 ;;
 esac
@@ -44,7 +44,7 @@ print_logo() {
 }
 
 case "$theme" in
-  encom)
+  solaros)
     mint='\033[38;2;143;255;227m'
     white='\033[38;2;207;255;240m'
     dim='\033[38;2;75;133;120m'
