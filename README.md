@@ -89,9 +89,10 @@ repository does not ship.
 
 ## Credits
 
-`backgrounds/encom-grid.svg` and the SolarOS banner are original to this theme.
-ENCOM is the fictional corporation from *Tron*; this is an unaffiliated fan
-theme.
+`backgrounds/encom-grid.svg` is original to this theme. The SolarOS banner
+composes the ENCOM International wordmark, which is not — it is a third-party
+vector of a logo from *Tron*. ENCOM is a fictional corporation; this is an
+unaffiliated fan theme and claims no rights over the mark.
 
 ## License
 
