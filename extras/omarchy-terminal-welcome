@@ -52,9 +52,9 @@ case "${theme,,}" in
     printf '\n'
     if (( columns >= 48 )); then
       print_logo "$branding_dir/solaros-ascii.txt" "$mint"
-      printf "${dim}ENCOM PERSONAL SYSTEMS // VERSION 4.0.1${reset}\n"
+      printf "${dim}SOLAROS PERSONAL SYSTEMS // VERSION 4.0.1${reset}\n"
     else
-      printf "${mint}${bold}ENCOM // SOLAROS 4.0.1${reset}\n"
+      printf "${mint}${bold}SOLAROS 4.0.1${reset}\n"
     fi
     printf "${dim}────────────────────────────────────────────────────${reset}\n"
     printf "${dim}OPERATOR   ${white}%s@%s${reset}\n" "$operator" "$node"

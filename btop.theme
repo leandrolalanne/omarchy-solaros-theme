@@ -1,4 +1,4 @@
-# ENCOM / SolarOS telemetry palette
+# SolarOS telemetry palette
 theme[main_bg]="#020908"
 theme[main_fg]="#cffff0"
 theme[title]="#8fffe3"

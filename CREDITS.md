@@ -28,7 +28,7 @@ same grid seen in perspective, then scenes built out of it, then the abstracts.
 ## Generated for this theme
 
 The twelve marked Gemini were made with Google Gemini from prompts written
-against the ENCOM palette, then selected, named and recompressed here.
+against the SolarOS palette, then selected, named and recompressed here.
 
 ## From other Omarchy themes
 
