@@ -1,6 +1,6 @@
 mode = "dark"
 
-# Flynn's basement terminal: cold phosphor on smoked glass.
+# Flynn's basement terminal: cold phosphor on a flat, evenly dimmed desktop.
 accent = "#8fffe3"
 selection = "#103e34"
 muted = "#174a40"

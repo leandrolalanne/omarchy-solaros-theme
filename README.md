@@ -1,7 +1,7 @@
 # SolarOS
 
 A cold-phosphor terminal theme for [Omarchy](https://omarchy.org). Green on
-smoked glass — Flynn's basement, not a neon arcade.
+black, evenly translucent, no blur — Flynn's basement, not a neon arcade.
 
 ![SolarOS](preview.png)
 
@@ -31,8 +31,8 @@ Or from the Omarchy menu: **Install → Style → Theme**, then paste the URL.
 
 Omarchy strips anything that executes code from a theme installed by URL, and
 regenerates it from `colors.toml`. For this theme that means **`hyprland.lua`
-is removed**, and with it the window opacity and the disabled blur that make
-the desktop read as smoked glass. The colours survive; the glass does not.
+is removed**, and with it the even 0.88 window opacity, the gradient borders
+and the shadows. The palette survives; the depth does not.
 
 Two ways around it, both after installing:
 
@@ -59,13 +59,13 @@ cloned by looking for that directory.
 
 ### The hook
 
-`hooks/solaros-hyprland-glass` re-applies the same opacity and blur settings
-after a theme switch or a reboot. It exists because other themes disable blur
-globally when they are active, and whichever hook finishes last wins. Install it
-if you run more than one theme that touches Hyprland:
+`hooks/solaros-hyprland-opacity` re-applies the window opacity after a theme
+switch or a reboot. It exists because other themes rewrite Hyprland's decoration
+settings globally when they are active, and whichever hook finishes last wins.
+Install it if you run more than one theme that touches Hyprland:
 
 ```bash
-omarchy hook install theme-set hooks/solaros-hyprland-glass
+omarchy hook install theme-set hooks/solaros-hyprland-opacity
 ```
 
 It exits immediately unless SolarOS is the current theme.
@@ -105,7 +105,7 @@ Delete it to get the stock greeting back.
 |---|---|
 | `colors.toml` | The palette everything else is generated from |
 | `ghostty.conf` | Terminal colours — regenerated from `colors.toml` on a URL install |
-| `hyprland.lua` | Window opacity, borders, blur. **Stripped on a URL install** |
+| `hyprland.lua` | Window opacity, borders, shadows. **Stripped on a URL install** |
 | `btop.theme` · `icons.theme` | System monitor, icon set |
 | `shell.bar.toml` · `shell.launcher.toml` · `shell.notifications.toml` | Omarchy shell surfaces |
 | `gtk-4.0.css` | GTK4 apps, Nautilus included |
