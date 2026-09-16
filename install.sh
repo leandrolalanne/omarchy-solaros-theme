@@ -21,7 +21,7 @@ THEME_DIR=$CONFIG/omarchy/themes/solaros
 WEBAPP_WA=$CONFIG/omarchy/webapps/encom-communications/whatsapp-slim-encom
 WEBAPP_TIDAL=$CONFIG/omarchy/webapps/encom-audio/tidal-encom
 BRANDING_DIR=$CONFIG/omarchy/branding
-HOOK_DIR=$CONFIG/omarchy/hooks
+HOOK_DIR=$CONFIG/omarchy/hooks   # only for the message above; omarchy owns the copy
 
 theme_only=false
 [[ ${1:-} == --theme-only ]] && theme_only=true
@@ -52,9 +52,8 @@ fi
 # in a browser. Everything else the theme asks for is in hyprland.lua, which
 # Hyprland loads at login on its own.
 say "hooks -> $HOOK_DIR/theme-set.d"
-mkdir -p "$HOOK_DIR/theme-set.d"
 for h in solaros-whatsapp solaros-tidal; do
-  install -Dm 755 "$SRC/hooks/$h" "$HOOK_DIR/theme-set.d/$h"
+  omarchy hook install theme-set "$SRC/hooks/$h" >/dev/null
 done
 
 # ------------------------------------------------------------------ nautilus
