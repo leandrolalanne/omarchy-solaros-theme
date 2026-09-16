@@ -104,9 +104,7 @@ it. Nothing to turn off.
 | `hooks/` | Re-apply the Hyprland opacity and the webapp palettes on every theme switch |
 | `bin/` | The WhatsApp launcher and the two palette-swap scripts the hooks call |
 | `webapps/` | The WhatsApp and TIDAL extensions |
-| `applications/` | Desktop entry for the WhatsApp webapp |
 | `vscode/` | SolarOS Phosphor 1984, the editor colour theme |
-| `openrgb/` | Keyboard lighting profile |
 | `extras/` | The terminal banner — branding, not theming |
 | `STYLE.md` | The typography contract the whole suite follows |
 
