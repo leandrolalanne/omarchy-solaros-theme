@@ -81,7 +81,7 @@ Delete it to get the stock greeting back.
 | `shell.bar.toml` · `shell.launcher.toml` · `shell.notifications.toml` | Omarchy shell surfaces |
 | `gtk-4.0.css` | GTK4 apps, Nautilus included |
 | `obsidian.css` | Obsidian |
-| `backgrounds/` | Three wallpapers, one of them vector |
+| `backgrounds/` | Fifteen wallpapers, 8.6 MB total |
 | `STYLE.md` | The typography contract the theme follows |
 
 `STYLE.md` describes the wider ENCOM suite, so it mentions surfaces this
