@@ -15,6 +15,7 @@ set -euo pipefail
 SRC=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)
 
 CONFIG=${XDG_CONFIG_HOME:-$HOME/.config}
+DATA=${XDG_DATA_HOME:-$HOME/.local/share}
 BIN=$HOME/.local/bin
 
 THEME_DIR=$CONFIG/omarchy/themes/solaros
@@ -84,6 +85,7 @@ for b in "$SRC"/bin/*; do
 done
 install -Dm 755 "$SRC/extras/omarchy-terminal-welcome" "$BIN/omarchy-terminal-welcome"
 install -Dm 644 "$SRC/extras/solaros-ascii.txt" "$BRANDING_DIR/solaros-ascii.txt"
+install -Dm 644 "$SRC/applications/solaros-whatsapp.desktop" "$DATA/applications/solaros-whatsapp.desktop"
 
 # -------------------------------------------------------------- the webapps
 # active.css is not in the repo: it is a copy of whichever palette matches the
@@ -99,6 +101,12 @@ cp -a "$SRC/webapps/whatsapp" "$SRC/webapps/tidal" "$WEBAPP_DIR/"
 say "vscode -> $HOME/.vscode/extensions/solaros.solaros-phosphor-1.0.0"
 rm -rf "$HOME/.vscode/extensions/solaros.solaros-phosphor-1.0.0"
 cp -a "$SRC/vscode" "$HOME/.vscode/extensions/solaros.solaros-phosphor-1.0.0"
+
+# -------------------------------------------------------------- the keyboard
+if [[ -d $CONFIG/OpenRGB ]]; then
+  say "openrgb -> $CONFIG/OpenRGB/solaros-keyboard.orp"
+  install -Dm 644 "$SRC/openrgb/solaros-keyboard.orp" "$CONFIG/OpenRGB/solaros-keyboard.orp"
+fi
 
 cat <<EOF
 
