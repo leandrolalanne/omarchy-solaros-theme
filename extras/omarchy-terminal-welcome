@@ -2,7 +2,7 @@
 
 set -u
 
-theme_file="/home/lean/.local/state/omarchy/current/theme.name"
+theme_file="${XDG_STATE_HOME:-$HOME/.local/state}/omarchy/current/theme.name"
 if [[ -n ${1:-} ]]; then
   theme="$1"
 elif [[ -r $theme_file ]]; then
@@ -12,7 +12,7 @@ else
 fi
 
 # This is theme branding, not a global shell banner.
-case "$theme" in
+case "${theme,,}" in
   solaros) ;;
   640k) ;;
   *) exit 0 ;;
@@ -24,7 +24,7 @@ kernel="$(uname -r)"
 mem_used="$(free -h | awk '/^Mem:/ {print $3 " / " $2}')"
 workspace="--"
 columns="${COLUMNS:-$(tput cols 2>/dev/null || printf '80')}"
-branding_dir="/home/lean/.config/omarchy/branding"
+branding_dir="${XDG_CONFIG_HOME:-$HOME/.config}/omarchy/branding"
 
 if command -v hyprctl >/dev/null 2>&1 && command -v jq >/dev/null 2>&1; then
   workspace="$(hyprctl activeworkspace -j 2>/dev/null | jq -r '.id // "--"')"
@@ -43,7 +43,7 @@ print_logo() {
   printf "%b" "$reset"
 }
 
-case "$theme" in
+case "${theme,,}" in
   solaros)
     mint='\033[38;2;143;255;227m'
     white='\033[38;2;207;255;240m'

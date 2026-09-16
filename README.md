@@ -88,9 +88,13 @@ SolarOS banner shown in the preview. It is branding, not theming — it prints
 only under this theme and exits for every other one.
 
 ```bash
+mkdir -p ~/.config/omarchy/branding
+cp extras/solaros-ascii.txt ~/.config/omarchy/branding/
 cp extras/omarchy-terminal-welcome ~/.local/bin/
 chmod +x ~/.local/bin/omarchy-terminal-welcome
 ```
+
+The script prints `solaros-ascii.txt`, so both files are needed.
 
 `~/.local/bin` comes before the packaged binary on `PATH`, so the copy wins.
 Delete it to get the stock greeting back.
