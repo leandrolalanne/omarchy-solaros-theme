@@ -33,6 +33,9 @@ omarchy theme set solaros
 `install.sh` is idempotent: it overwrites what it owns and leaves everything
 else alone, so re-running it after a `git pull` is how you update.
 
+Omarchy already ships a WhatsApp and a TIDAL launcher, so this theme does not
+add its own — the extensions skin whatever opens those sites.
+
 **Just the Omarchy theme**, if you only want the colours and wallpapers:
 
 ```bash
@@ -117,13 +120,6 @@ vault it finds as a theme called *Omarchy*. Select it under
 **Settings → Appearance → Themes**, once, and it follows every theme switch
 from then on.
 
-**The keyboard.** OpenRGB, **Profiles → solaros-keyboard → Load**. It is one
-keyboard's layout and will not mean anything on different hardware.
-
-**The WhatsApp webapp.** `solaros-whatsapp` opens it, and a desktop entry of the
-same name puts it in the application launcher. It is a plain Chromium web app;
-the skin comes from the extension above, not from the launcher.
-
 **The terminal banner.** `install.sh` drops `omarchy-terminal-welcome` into
 `~/.local/bin`, which comes before the packaged binary on `PATH`, so the copy
 wins. It prints only under this theme and exits for every other one. Delete that
@@ -136,13 +132,11 @@ So you can undo any of it by hand:
 | | |
 |---|---|
 | `~/.config/omarchy/themes/solaros/` | the theme |
-| `~/.config/omarchy/hooks/{theme-set.d,post-boot.d}/solaros-*` | the hooks |
+| `~/.config/omarchy/hooks/theme-set.d/solaros-*` | the hooks |
 | `~/.local/bin/solaros-*`, `~/.local/bin/omarchy-terminal-welcome` | scripts and banner |
 | `~/.config/omarchy/branding/solaros-ascii.txt` | the banner art |
 | `~/.config/omarchy/webapps/encom-communications/`, `.../encom-audio/` | the extensions |
-| `~/.local/share/applications/solaros-whatsapp.desktop` | the launcher entry |
 | `~/.vscode/extensions/solaros.solaros-phosphor-1.0.0/` | the editor theme |
-| `~/.config/OpenRGB/solaros-keyboard.orp` | the keyboard profile |
 | `~/.config/gtk-4.0/gtk.css` | one `@import` line added, nothing else touched |
 
 ## What is in here
@@ -158,12 +152,10 @@ So you can undo any of it by hand:
 | `obsidian.css` | Obsidian — replaces the one Omarchy would generate |
 | `vscode.json` | Names the editor theme for Omarchy to activate |
 | `backgrounds/` | Fifteen wallpapers, ordered flat grid → grid in perspective → scenes → abstract |
-| `hooks/` | Re-apply the Hyprland opacity and the webapp palettes on every theme switch |
-| `bin/` | The WhatsApp launcher and the two palette-swap scripts the hooks call |
+| `hooks/` | Re-apply the webapp palettes on every theme switch |
+| `bin/` | The two palette-swap scripts the hooks call |
 | `webapps/` | The WhatsApp and TIDAL extensions |
-| `applications/` | Desktop entry for the WhatsApp webapp |
 | `vscode/` | SolarOS Phosphor 1984, the editor colour theme |
-| `openrgb/` | Keyboard lighting profile |
 | `extras/` | The terminal banner — branding, not theming |
 | `STYLE.md` | The typography contract the whole suite follows |
 

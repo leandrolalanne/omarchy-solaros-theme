@@ -1,7 +1,0 @@
-#!/bin/bash
-
-set -euo pipefail
-
-exec omarchy-launch-or-focus-webapp \
-  "chrome-web.whatsapp.com__-Default" \
-  "https://web.whatsapp.com/"
