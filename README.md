@@ -63,6 +63,17 @@ omarchy hook install theme-set hooks/solaros-hyprland-glass
 
 It exits immediately unless SolarOS is the current theme.
 
+## The font
+
+Not shipped — it is a package, and themes in Omarchy cannot set fonts anyway,
+since `omarchy font set` is global. Two lines get you the type in the
+screenshots:
+
+```bash
+omarchy pkg add ttf-jetbrains-mono-nerd
+omarchy font set "JetBrainsMono Nerd Font"
+```
+
 ## Extras
 
 `extras/omarchy-terminal-welcome` replaces Omarchy's terminal greeting with the
