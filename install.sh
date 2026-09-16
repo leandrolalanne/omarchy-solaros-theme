@@ -40,8 +40,8 @@ for f in colors.toml ghostty.conf hyprland.lua btop.theme icons.theme \
          unlock.png preview-unlock.png; do
   install -Dm 644 "$SRC/$f" "$THEME_DIR/$f"
 done
-rm -rf "$THEME_DIR/backgrounds" "$THEME_DIR/assets"
-cp -a "$SRC/backgrounds" "$SRC/assets" "$THEME_DIR/"
+rm -rf "$THEME_DIR/backgrounds"
+cp -a "$SRC/backgrounds" "$THEME_DIR/"
 
 if $theme_only; then
   say "done -- run: omarchy theme set solaros"

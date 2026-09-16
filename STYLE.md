@@ -6,8 +6,7 @@ choices are deliberate, not defaults.
 ## Typography
 
 Everything that receives the SolarOS treatment uses **JetBrainsMono Nerd Font**.
-It stands in for software running inside the fiction; it is not a claim about
-ENCOM's own brand typography.
+It stands in for software running inside the fiction.
 
 **The theme cannot set this for you.** Fonts in Omarchy are global — `omarchy
 font set` rewrites every terminal config and `fontconfig` at once, and no theme
@@ -36,11 +35,10 @@ rendering rather than restyling it.
 | Obsidian | `obsidian.css` |
 | btop | `btop.theme` — colours only, the font follows the terminal |
 
-## Branding boundary
+## Borrowed names
 
-The ENCOM wordmark in `assets/` keeps its original construction: proportions,
-letterforms and spacing are not restyled to match the UI font. Treat
-JetBrainsMono as the operating system's type — terminals, labels, status text,
-technical annotations — and leave the mark alone.
+`ENCOM` in the terminal banner is a name out of *Tron*, not a design element:
+it is set in the same JetBrainsMono as everything around it and gets no
+special treatment. Nothing here reproduces anyone's trademark artwork.
 
 This is a fan theme; see [CREDITS.md](CREDITS.md).

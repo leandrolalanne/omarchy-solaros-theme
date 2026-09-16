@@ -55,9 +55,9 @@ stated as far as it can be established; happy to remove it on request.
 
 The whole thing is built on *Tron*. SolarOS is the operating system running on
 Flynn's server in *Tron: Legacy*, down to the `4.0.1` in the terminal banner.
-ENCOM is the corporation from the 1982 film, and the ENCOM International
-wordmark composed into `assets/solaros-1984-phosphor-master.svg` is a
-third-party vector of that logo.
+ENCOM is the corporation from the 1982 film, and the terminal banner names it
+the way a machine of that era would: the manufacturer above, the operating
+system below.
 
 None of that is hidden, because there is nothing to hide: this is an unpaid fan
 project, released free under MIT, selling nothing and claiming no rights over
