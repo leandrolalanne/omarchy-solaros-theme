@@ -3,25 +3,25 @@
 Every wallpaper in this theme and where it came from. Nothing is unaccounted
 for.
 
-They are numbered in three families — grid, perspective, abstract — so cycling
-with `omarchy theme bg next` moves through related looks rather than jumping
-between them.
+They are numbered so that cycling with `omarchy theme bg next` moves through
+related looks rather than jumping between them: the flat grids first, then the
+same grid seen in perspective, then scenes built out of it, then the abstracts.
 
 | # | | Family | Origin |
 |---|---|---|---|
-| 01 | `grid-deep` | grid | Gemini |
-| 02 | `grid-fine` | grid | Gemini |
-| 03 | `grid-phosphor` | grid | Gemini |
-| 04 | `grid-overlay` | grid | Gemini |
-| 05 | `grid-data` | grid | Gemini |
-| 06 | `void` | grid | **Wallhaven** |
-| 07 | `crt-late-night` | grid | **omarchy-commit-theme** |
-| 08 | `phosphor` | grid | **omarchy-muthur-theme** |
-| 09 | `corridor` | perspective | Gemini |
-| 10 | `city` | perspective | Gemini |
-| 11 | `architecture` | perspective | Gemini |
-| 12 | `room` | perspective | Gemini |
-| 13 | `room-bright` | perspective | Gemini |
+| 01 | `grid-deep` | flat grid | Gemini |
+| 02 | `grid-fine` | flat grid | Gemini |
+| 03 | `grid-phosphor` | flat grid | Gemini |
+| 04 | `grid-overlay` | flat grid | Gemini |
+| 05 | `grid-data` | flat grid | Gemini |
+| 06 | `void` | flat grid | **Wallhaven** |
+| 07 | `crt-late-night` | flat grid | **omarchy-commit-theme** |
+| 08 | `phosphor` | flat grid | **omarchy-muthur-theme** |
+| 09 | `room` | grid in perspective | Gemini |
+| 10 | `room-bright` | grid in perspective | Gemini |
+| 11 | `corridor` | scene in perspective | Gemini |
+| 12 | `city` | scene in perspective | Gemini |
+| 13 | `architecture` | scene in perspective | Gemini |
 | 14 | `hud-circuit` | abstract | Gemini |
 | 15 | `circuit-frame` | abstract | Gemini |
 
