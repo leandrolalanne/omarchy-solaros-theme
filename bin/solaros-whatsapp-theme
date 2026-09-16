@@ -13,9 +13,6 @@ case "$theme_name" in
   solaros)
     palette="$extension_dir/solaros.css"
     ;;
-  liquid-glass)
-    palette="$extension_dir/liquid-glass.css"
-    ;;
   *)
     # Keep the responsive WhatsApp Slim layout, but disable SolarOS visuals.
     palette="$extension_dir/neutral.css"
