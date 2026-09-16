@@ -21,7 +21,7 @@ it comes down.
 
 ## Install
 
-**The whole thing** — theme, hooks, webapp skins, launchers, editor colours:
+**The whole thing** — theme, hooks, webapp skins, editor colours:
 
 ```bash
 git clone https://github.com/leandrolalanne/omarchy-solaros-theme
@@ -32,9 +32,6 @@ omarchy theme set solaros
 
 `install.sh` is idempotent: it overwrites what it owns and leaves everything
 else alone, so re-running it after a `git pull` is how you update.
-
-Omarchy already ships a WhatsApp and a TIDAL launcher, so this theme does not
-add its own — the extensions skin whatever opens those sites.
 
 **Just the Omarchy theme**, if you only want the colours and wallpapers:
 
@@ -73,11 +70,14 @@ omarchy font set "JetBrainsMono Nerd Font"
 ## The browser extensions
 
 `webapps/whatsapp-slim-encom` and `webapps/tidal-encom` are unpacked MV3
-extensions that restyle WhatsApp Web and TIDAL to match the desktop. Chromium
-tracks unpacked extensions by absolute path, so once per machine, in each
-webapp window: `chrome://extensions` → Developer mode → **Load unpacked** →
-point it at `~/.config/omarchy/webapps/encom-communications/whatsapp-slim-encom`
-and `~/.config/omarchy/webapps/encom-audio/tidal-encom`.
+extensions that restyle WhatsApp Web and TIDAL to match the desktop. They match
+on the URL, so the styling lands whether the site is open in a tab or in a
+standalone web app window.
+
+Chromium tracks unpacked extensions by absolute path, so once per machine:
+`chrome://extensions` → Developer mode → **Load unpacked** → point it at
+`~/.config/omarchy/webapps/encom-communications/whatsapp-slim-encom` and
+`~/.config/omarchy/webapps/encom-audio/tidal-encom`.
 
 Those directory names are the paths Chromium already has on file. Renaming them
 costs a manual re-add on every machine that has them loaded, which is why they

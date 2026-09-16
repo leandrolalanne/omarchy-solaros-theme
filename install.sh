@@ -7,7 +7,7 @@
 # script. Running it again is safe -- it overwrites what it owns and leaves
 # everything else alone.
 #
-#   ./install.sh              theme + hooks + webapps + launchers + editor
+#   ./install.sh              theme + hooks + webapps + editor
 #   ./install.sh --theme-only just the Omarchy theme, nothing else
 #
 set -euo pipefail
@@ -114,9 +114,9 @@ Installed. Two things this script cannot do for you:
   1. omarchy theme set solaros
 
   2. The two browser extensions are unpacked, and Chromium tracks those by
-     absolute path -- it will not find them on its own. In each webapp
-     window open chrome://extensions, turn on Developer mode, then
-     "Load unpacked" and pick:
+     absolute path -- it will not find them on its own. Open
+     chrome://extensions, turn on Developer mode, then "Load unpacked"
+     and pick:
 
        $WEBAPP_WA
        $WEBAPP_TIDAL
