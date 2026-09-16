@@ -3,26 +3,26 @@
 Every wallpaper in this theme and where it came from. Nothing is unaccounted
 for.
 
-They are numbered in three families, each ordered from darkest to strongest, so
-cycling with `omarchy theme bg next` moves through related looks rather than
-jumping between them.
+They are numbered in three families — grid, perspective, abstract — so cycling
+with `omarchy theme bg next` moves through related looks rather than jumping
+between them.
 
 | # | | Family | Origin |
 |---|---|---|---|
-| 01 | `grid-deep` | flat grid | Gemini |
-| 02 | `grid-fine` | flat grid | Gemini |
-| 03 | `grid-phosphor` | flat grid | Gemini |
-| 04 | `grid-overlay` | flat grid | Gemini |
-| 05 | `grid-data` | flat grid | Gemini |
-| 06 | `corridor` | perspective | Gemini |
-| 07 | `city` | perspective | Gemini |
-| 08 | `architecture` | perspective | Gemini |
-| 09 | `room` | perspective | Gemini |
-| 10 | `room-bright` | perspective | Gemini |
-| 11 | `void` | abstract | **Wallhaven** |
-| 12 | `crt-late-night` | abstract | **omarchy-commit-theme** |
-| 13 | `hud-circuit` | abstract | Gemini |
-| 14 | `phosphor` | abstract | **omarchy-muthur-theme** |
+| 01 | `grid-deep` | grid | Gemini |
+| 02 | `grid-fine` | grid | Gemini |
+| 03 | `grid-phosphor` | grid | Gemini |
+| 04 | `grid-overlay` | grid | Gemini |
+| 05 | `grid-data` | grid | Gemini |
+| 06 | `void` | grid | **Wallhaven** |
+| 07 | `crt-late-night` | grid | **omarchy-commit-theme** |
+| 08 | `phosphor` | grid | **omarchy-muthur-theme** |
+| 09 | `corridor` | perspective | Gemini |
+| 10 | `city` | perspective | Gemini |
+| 11 | `architecture` | perspective | Gemini |
+| 12 | `room` | perspective | Gemini |
+| 13 | `room-bright` | perspective | Gemini |
+| 14 | `hud-circuit` | abstract | Gemini |
 | 15 | `circuit-frame` | abstract | Gemini |
 
 ## Generated for this theme
@@ -37,8 +37,8 @@ established rather than remembered.
 
 | File | Source | Author |
 |---|---|---|
-| `12-crt-late-night.webp` | [omarchy-commit-theme](https://github.com/c0ze/omarchy-commit-theme) | c0ze |
-| `14-phosphor.png` | [omarchy-muthur-theme](https://github.com/santiago-giordano/omarchy-muthur-theme) | Santiago Giordano |
+| `07-crt-late-night.webp` | [omarchy-commit-theme](https://github.com/c0ze/omarchy-commit-theme) | c0ze |
+| `08-phosphor.png` | [omarchy-muthur-theme](https://github.com/santiago-giordano/omarchy-muthur-theme) | Santiago Giordano |
 
 Neither repository ships a licence file, so these are used with attribution and
 without an explicit grant. If either author would rather they were not
@@ -46,7 +46,7 @@ redistributed here, open an issue and they come out.
 
 ## From Wallhaven
 
-`11-void.png` was downloaded from Wallhaven as `173801.png`. The wallpaper page
+`06-void.png` was downloaded from Wallhaven as `173801.png`. The wallpaper page
 for that id no longer resolves, so the uploader could not be identified. It is a
 near-black gradient — 72 unique colours across the frame. Kept with its origin
 stated as far as it can be established; happy to remove it on request.
