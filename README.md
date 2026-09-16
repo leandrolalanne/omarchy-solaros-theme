@@ -99,6 +99,49 @@ That import is how the scoping works: SolarOS is the only theme that ships a
 `gtk-4.0.css`, so under any other theme the path does not resolve and GTK skips
 it. Nothing to turn off.
 
+## Turning on the rest
+
+`install.sh` puts these in place, but each one is switched on by the
+application, not by Omarchy:
+
+**The editor theme.** VS Code, `Ctrl+K Ctrl+T`, pick **SolarOS Phosphor 1984**.
+It is installed as an unpacked extension under `~/.vscode/extensions/`; if you
+run VSCodium or Cursor, copy that same directory into `~/.vscode-oss/extensions`
+or `~/.cursor/extensions` instead.
+
+**Obsidian.** Nothing to install — Omarchy copies `obsidian.css` into every
+vault it finds as a theme called *Omarchy*. Select it under
+**Settings → Appearance → Themes**, once, and it follows every theme switch
+from then on.
+
+**The keyboard.** OpenRGB, **Profiles → solaros-keyboard → Load**. It is one
+keyboard's layout and will not mean anything on different hardware.
+
+**The WhatsApp webapp.** `solaros-whatsapp` opens it, and a desktop entry of the
+same name puts it in the application launcher. It is a plain Chromium web app;
+the skin comes from the extension above, not from the launcher.
+
+**The terminal banner.** `install.sh` drops `omarchy-terminal-welcome` into
+`~/.local/bin`, which comes before the packaged binary on `PATH`, so the copy
+wins. It prints only under this theme and exits for every other one. Delete that
+one file to get Omarchy's stock greeting back.
+
+## Where everything lands
+
+So you can undo any of it by hand:
+
+| | |
+|---|---|
+| `~/.config/omarchy/themes/solaros/` | the theme |
+| `~/.config/omarchy/hooks/{theme-set.d,post-boot.d}/solaros-*` | the hooks |
+| `~/.local/bin/solaros-*`, `~/.local/bin/omarchy-terminal-welcome` | scripts and banner |
+| `~/.config/omarchy/branding/solaros-ascii.txt` | the banner art |
+| `~/.config/omarchy/webapps/encom-communications/`, `.../encom-audio/` | the extensions |
+| `~/.local/share/applications/solaros-whatsapp.desktop` | the launcher entry |
+| `~/.vscode/extensions/solaros.solaros-phosphor-1.0.0/` | the editor theme |
+| `~/.config/OpenRGB/solaros-keyboard.orp` | the keyboard profile |
+| `~/.config/gtk-4.0/gtk.css` | one `@import` line added, nothing else touched |
+
 ## What is in here
 
 | Path | What it is |
