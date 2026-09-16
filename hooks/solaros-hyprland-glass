@@ -10,13 +10,13 @@ set -euo pipefail
 # instance, no matter when it finishes, applies whatever theme is actually
 # current right now, instead of the stale slug it was launched with.
 theme_slug=$(cat "$HOME/.local/state/omarchy/current/theme.name" 2>/dev/null)
-[[ $theme_slug == "encom" ]] || exit 0
+[[ $theme_slug == "solaros" ]] || exit 0
 
 # ayaka-smoky intentionally disables blur for every non-Ayaka theme after the
-# theme's Hyprland module is loaded. ENCOM runs later and restores its own
+# theme's Hyprland module is loaded. SolarOS runs later and restores its own
 # theme-scoped opacity values after a theme switch or desktop boot.
 #
-# Estos valores deben seguir a themes/encom/hyprland.lua: blur desactivado y
+# Estos valores deben seguir a themes/solaros/hyprland.lua: blur desactivado y
 # opacidad 0.88 pareja.
 hyprctl eval 'hl.config({
   decoration = {

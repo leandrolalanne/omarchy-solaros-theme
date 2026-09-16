@@ -51,12 +51,19 @@ for that id no longer resolves, so the uploader could not be identified. It is a
 near-black gradient — 72 unique colours across the frame. Kept with its origin
 stated as far as it can be established; happy to remove it on request.
 
-## Third-party marks
+## Tron, and what this theme is
 
-The ENCOM International wordmark composed into
-`assets/solaros-1984-phosphor-master.svg` is a third-party vector of a logo from
-*Tron*. ENCOM is a fictional corporation; this theme is an unaffiliated fan work
-and claims no rights over the mark.
+The whole thing is built on *Tron*. SolarOS is the operating system running on
+Flynn's server in *Tron: Legacy*, down to the `4.0.1` in the terminal banner.
+ENCOM is the corporation from the 1982 film, and the ENCOM International
+wordmark composed into `assets/solaros-1984-phosphor-master.svg` is a
+third-party vector of that logo.
+
+None of that is hidden, because there is nothing to hide: this is an unpaid fan
+project, released free under MIT, selling nothing and claiming no rights over
+anything it references. It is not affiliated with or endorsed by Disney or any
+other rights holder. If one of them would rather it were not published, a
+takedown request is enough — no argument will follow.
 
 ## Licence
 

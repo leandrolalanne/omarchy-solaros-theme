@@ -1,14 +1,21 @@
-# ENCOM
+# SolarOS
 
 A cold-phosphor terminal theme for [Omarchy](https://omarchy.org). Green on
 smoked glass — Flynn's basement, not a neon arcade.
 
-![ENCOM](preview.png)
+![SolarOS](preview.png)
+
+SolarOS is the operating system on Kevin Flynn's server in *Tron: Legacy* —
+the prompt reads `SolarOS 4.0.1` when Sam wipes the dust off the terminal. This
+theme is an unpaid fan project built around that look, released free under MIT.
+It is not affiliated with Disney or with anyone else who owns a piece of *Tron*,
+and it sells nothing. If a rights holder would rather it did not exist, say so
+and it comes down.
 
 ## Install
 
 ```
-omarchy theme install https://github.com/leandrolalanne/omarchy-encom-theme
+omarchy theme install https://github.com/leandrolalanne/omarchy-solaros-theme
 ```
 
 Or from the Omarchy menu: **Install → Style → Theme**, then paste the URL.
@@ -25,19 +32,19 @@ Two ways around it, both after installing:
 **Copy the Hyprland module in by hand**
 
 ```bash
-curl -o ~/.config/omarchy/themes/encom/hyprland.lua \
-  https://raw.githubusercontent.com/leandrolalanne/omarchy-encom-theme/main/hyprland.lua
-omarchy theme set encom
+curl -o ~/.config/omarchy/themes/solaros/hyprland.lua \
+  https://raw.githubusercontent.com/leandrolalanne/omarchy-solaros-theme/main/hyprland.lua
+omarchy theme set solaros
 ```
 
 **Or install the theme by cloning it yourself**, which Omarchy treats as your
 own theme and leaves untouched:
 
 ```bash
-git clone https://github.com/leandrolalanne/omarchy-encom-theme \
-  ~/.config/omarchy/themes/encom
-rm -rf ~/.config/omarchy/themes/encom/.git
-omarchy theme set encom
+git clone https://github.com/leandrolalanne/omarchy-solaros-theme \
+  ~/.config/omarchy/themes/solaros
+rm -rf ~/.config/omarchy/themes/solaros/.git
+omarchy theme set solaros
 ```
 
 The `.git` removal is what matters: Omarchy decides whether a theme is yours or
@@ -45,16 +52,16 @@ cloned by looking for that directory.
 
 ### The hook
 
-`hooks/encom-hyprland-glass` re-applies the same opacity and blur settings
+`hooks/solaros-hyprland-glass` re-applies the same opacity and blur settings
 after a theme switch or a reboot. It exists because other themes disable blur
 globally when they are active, and whichever hook finishes last wins. Install it
 if you run more than one theme that touches Hyprland:
 
 ```bash
-omarchy hook install theme-set hooks/encom-hyprland-glass
+omarchy hook install theme-set hooks/solaros-hyprland-glass
 ```
 
-It exits immediately unless ENCOM is the current theme.
+It exits immediately unless SolarOS is the current theme.
 
 ## Extras
 
@@ -84,8 +91,8 @@ Delete it to get the stock greeting back.
 | `backgrounds/` | Fifteen wallpapers, ordered flat grid → grid in perspective → scenes → abstract |
 | `STYLE.md` | The typography contract the theme follows |
 
-`STYLE.md` describes the wider ENCOM suite, so it mentions surfaces this
-repository does not ship.
+`STYLE.md` describes the wider suite this theme came from, so it mentions
+surfaces this repository does not ship.
 
 ## Credits
 
