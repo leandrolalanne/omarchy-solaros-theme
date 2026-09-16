@@ -104,10 +104,13 @@ it. Nothing to turn off.
 `install.sh` puts these in place, but each one is switched on by the
 application, not by Omarchy:
 
-**The editor theme.** VS Code, `Ctrl+K Ctrl+T`, pick **SolarOS Phosphor 1984**.
-It is installed as an unpacked extension under `~/.vscode/extensions/`; if you
-run VSCodium or Cursor, copy that same directory into `~/.vscode-oss/extensions`
-or `~/.cursor/extensions` instead.
+**The editor theme.** Nothing to pick: `vscode.json` names the extension and
+the theme label, and Omarchy's own `omarchy-theme-set-vscode` writes
+`workbench.colorTheme` into VS Code, VSCodium, Insiders and Cursor settings on
+every theme switch. `install.sh` only handles `~/.vscode/extensions/`, so for
+VSCodium or Cursor copy that directory into `~/.vscode-oss/extensions` or
+`~/.cursor/extensions` as well. Without `vscode.json`, Omarchy generates a theme
+of its own from `colors.toml` instead.
 
 **Obsidian.** Nothing to install — Omarchy copies `obsidian.css` into every
 vault it finds as a theme called *Omarchy*. Select it under
@@ -152,7 +155,8 @@ So you can undo any of it by hand:
 | `btop.theme` · `icons.theme` | System monitor, icon set |
 | `shell.*.toml` | Omarchy shell surfaces — bar, launcher, notifications |
 | `gtk-4.0.css` | GTK4 apps, Nautilus included |
-| `obsidian.css` | Obsidian |
+| `obsidian.css` | Obsidian — replaces the one Omarchy would generate |
+| `vscode.json` | Names the editor theme for Omarchy to activate |
 | `backgrounds/` | Fifteen wallpapers, ordered flat grid → grid in perspective → scenes → abstract |
 | `hooks/` | Re-apply the Hyprland opacity and the webapp palettes on every theme switch |
 | `bin/` | The WhatsApp launcher and the two palette-swap scripts the hooks call |
@@ -163,9 +167,13 @@ So you can undo any of it by hand:
 | `extras/` | The terminal banner — branding, not theming |
 | `STYLE.md` | The typography contract the whole suite follows |
 
-Two files are generated rather than tracked: each webapp's `active.css` (a copy
-of whichever palette matches the current theme, written by the hooks) and the
-theme's `vscode.json` (written by Omarchy from `colors.toml`).
+Each webapp's `active.css` is generated rather than tracked: it is a copy of
+whichever palette matches the current theme, written by the hooks.
+
+Everything else Omarchy needs, it generates from `colors.toml` — Alacritty,
+Kitty, Foot, Neovim, Helix, tmux, the Chromium accent, the keyboard, and a VS
+Code theme. A file shipped here under the generated name wins; the templates
+only fill in what is missing.
 
 ## Credits
 
