@@ -1,25 +1,39 @@
-# ENCOM / SolarOS visual contract
+# SolarOS visual contract
+
+What this theme assumes about type, and where it applies it. Kept because the
+choices are deliberate, not defaults.
 
 ## Typography
 
-All operational UI that receives ENCOM/SolarOS visual treatment uses `JetBrainsMono Nerd Font` as its primary family. It represents software running inside the fictional SolarOS environment; it is not a replacement for ENCOM's canonical brand typography.
+Everything that receives the SolarOS treatment uses **JetBrainsMono Nerd Font**.
+It stands in for software running inside the fiction; it is not a claim about
+ENCOM's own brand typography.
 
-- Native/terminal family: `JetBrainsMono Nerd Font`
-- Web stack: `"JetBrainsMono Nerd Font", "JetBrains Mono", "IBM Plex Mono", "Noto Color Emoji", monospace`
-- Keep icon glyphs and emoji on their required fallback fonts when replacing them would break rendering.
-- Apply the family only with the ENCOM/SolarOS layer when the integration is theme-scoped; neutral modes must remain neutral.
+**The theme cannot set this for you.** Fonts in Omarchy are global — `omarchy
+font set` rewrites every terminal config and `fontconfig` at once, and no theme
+touches any of it. If you want the type to match the screenshots:
+
+```bash
+omarchy font set "JetBrainsMono Nerd Font"
+```
+
+Keep icon glyphs and emoji on their own fallback fonts. Replacing those breaks
+rendering rather than restyling it.
+
+## Where it lands
+
+| Surface | How |
+|---|---|
+| Omarchy shell, terminals | resolve the system `monospace` alias |
+| Nautilus and other GTK4 apps | `gtk-4.0.css` declares the family |
+| Obsidian | `obsidian.css` |
+| btop | `btop.theme` — colours only, the font follows the terminal |
 
 ## Branding boundary
 
-- ENCOM logos, wordmarks, proportions, and established brand typography remain canonical and must not be restyled to match the SolarOS UI font.
-- Treat JetBrains Mono as diegetic operating-system typography: terminals, controls, labels, status text, application content, and technical annotations.
-- Brand marks embedded in wallpapers, icons, launchers, or application chrome preserve their original approved construction.
+The ENCOM wordmark in `assets/` keeps its original construction: proportions,
+letterforms and spacing are not restyled to match the UI font. Treat
+JetBrainsMono as the operating system's type — terminals, labels, status text,
+technical annotations — and leave the mark alone.
 
-## Coverage
-
-- Omarchy shell and terminal applications resolve the system `monospace` alias, currently `JetBrainsMono Nerd Font`.
-- Nautilus declares the family in `gtk-4.0.css`.
-- WhatsApp and TIDAL declare the web stack in their ENCOM extension CSS.
-- Obsidian receives the family from this theme's `obsidian.css`.
-- VS Code's editor and integrated terminal resolve the system `monospace` alias; the SolarOS color theme remains color-only because VS Code color themes do not own the workbench font family.
-- Operational and technical text in ENCOM SVG backgrounds uses the SolarOS UI family; ENCOM logos and wordmarks preserve their canonical brand typography.
+This is a fan theme; see [CREDITS.md](CREDITS.md).
