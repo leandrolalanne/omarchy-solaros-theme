@@ -89,12 +89,10 @@ repository does not ship.
 
 ## Credits
 
-`backgrounds/encom-grid.svg` is original to this theme. The SolarOS banner
-composes the ENCOM International wordmark, which is not — it is a third-party
-vector of a logo from *Tron*. ENCOM is a fictional corporation; this is an
-unaffiliated fan theme and claims no rights over the mark.
+Wallpapers and assets, with their origin, are listed in
+[CREDITS.md](CREDITS.md).
 
 ## License
 
-MIT for the theme files — see [LICENSE](LICENSE). Wallpapers that are not
-original to this theme keep whatever licence they shipped under.
+MIT for the theme's own files — see [LICENSE](LICENSE). Wallpapers that came
+from elsewhere keep their own terms; see [CREDITS.md](CREDITS.md).
