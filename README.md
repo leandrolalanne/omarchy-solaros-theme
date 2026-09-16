@@ -5,6 +5,13 @@ smoked glass — Flynn's basement, not a neon arcade.
 
 ![SolarOS](preview.png)
 
+<details>
+<summary>A second look — editor, system monitor, terminal, files</summary>
+
+![SolarOS](preview-alt.png)
+
+</details>
+
 SolarOS is the operating system on Kevin Flynn's server in *Tron: Legacy* —
 the prompt reads `SolarOS 4.0.1` when Sam wipes the dust off the terminal. This
 theme is an unpaid fan project built around that look, released free under MIT.
