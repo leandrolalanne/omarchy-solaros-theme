@@ -1,0 +1,96 @@
+#!/usr/bin/env bash
+
+set -u
+
+theme_file="/home/lean/.local/state/omarchy/current/theme.name"
+if [[ -n ${1:-} ]]; then
+  theme="$1"
+elif [[ -r $theme_file ]]; then
+  theme="$(<"$theme_file")"
+else
+  theme="arch"
+fi
+
+# This is theme branding, not a global shell banner.
+case "$theme" in
+  encom) ;;
+  640k) ;;
+  *) exit 0 ;;
+esac
+
+operator="${USER:-$(id -un)}"
+node="$(hostname)"
+kernel="$(uname -r)"
+mem_used="$(free -h | awk '/^Mem:/ {print $3 " / " $2}')"
+workspace="--"
+columns="${COLUMNS:-$(tput cols 2>/dev/null || printf '80')}"
+branding_dir="/home/lean/.config/omarchy/branding"
+
+if command -v hyprctl >/dev/null 2>&1 && command -v jq >/dev/null 2>&1; then
+  workspace="$(hyprctl activeworkspace -j 2>/dev/null | jq -r '.id // "--"')"
+fi
+
+reset='\033[0m'
+bold='\033[1m'
+
+print_logo() {
+  local logo_file=$1 color=$2 line
+  [[ -r $logo_file ]] || return 1
+  printf "%b" "$color"
+  while IFS= read -r line || [[ -n $line ]]; do
+    printf '%s\n' "$line"
+  done < "$logo_file"
+  printf "%b" "$reset"
+}
+
+case "$theme" in
+  encom)
+    mint='\033[38;2;143;255;227m'
+    white='\033[38;2;207;255;240m'
+    dim='\033[38;2;75;133;120m'
+
+    printf '\n'
+    if (( columns >= 48 )); then
+      print_logo "$branding_dir/solaros-ascii.txt" "$mint"
+      printf "${dim}ENCOM PERSONAL SYSTEMS // VERSION 4.0.1${reset}\n"
+    else
+      printf "${mint}${bold}ENCOM // SOLAROS 4.0.1${reset}\n"
+    fi
+    printf "${dim}────────────────────────────────────────────────────${reset}\n"
+    printf "${dim}OPERATOR   ${white}%s@%s${reset}\n" "$operator" "$node"
+    printf "${dim}KERNEL     ${white}%s${reset}\n" "$kernel"
+    printf "${dim}MEMORY     ${white}%s${reset}\n" "$mem_used"
+    printf "${dim}WORKSPACE  ${mint}%s${reset}  ${dim}// LINK ACTIVE${reset}\n\n" "$workspace"
+    ;;
+
+
+  640k)
+    # Pantalla de POST de BIOS de PC de los 90, con datos reales de la máquina.
+    # Paleta del tema: gris 0x07 para etiquetas, blanco 0x0F para valores.
+    gray='\033[38;2;170;170;170m'
+    wht='\033[38;2;255;255;255m'
+    dk='\033[38;2;85;85;85m'
+
+    cpu="$(awk -F': ' '/model name/{print $2; exit}' /proc/cpuinfo \
+      | sed 's/([A-Za-z]*)//g; s/ CPU.*//; s/  */ /g; s/^ //; s/ $//')"
+    mem_k="$(free -k | awk '/^Mem:/{print $2}')"
+    disk="$(findmnt -no SIZE,FSTYPE / 2>/dev/null | tr -s ' ' | sed 's/^ //')"
+
+    if (( columns >= 64 )); then
+      rule="────────────────────────────────────────────────────"
+    else
+      rule="────────────────────────────"
+    fi
+
+    printf '\n'
+    printf "${gray}AMIBIOS (C) 1992 American Megatrends Inc.${reset}\n"
+    printf "${dk}%s${reset}\n" "$rule"
+    printf "${gray} Main Processor  ${wht}%s${reset}\n" "$cpu"
+    printf "${gray} Memory Testing  ${wht}%sK OK${reset}  ${dk}(640K conventional)${reset}\n" "$mem_k"
+    printf "${gray} Fixed Disk 0    ${wht}%s${reset}\n" "$disk"
+    printf "${gray} Operator        ${wht}%s@%s${reset}\n" "$operator" "$node"
+    printf "${dk}%s${reset}\n" "$rule"
+    printf "${gray}Starting MS-DOS...${reset}\n\n"
+    ;;
+
+esac

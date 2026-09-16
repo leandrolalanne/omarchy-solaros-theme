@@ -1,0 +1,140 @@
+/* Encom palette for Nautilus 50 / GTK 4.
+ * Kept app-specific so other GTK applications retain their own themes. */
+
+window.nautilus-window {
+  --window-bg-color: #020908;
+  --window-fg-color: #cffff0;
+  --view-bg-color: rgba(2, 9, 8, 0.94);
+  --view-fg-color: #cffff0;
+  --headerbar-bg-color: rgba(1, 6, 5, 0.97);
+  --headerbar-fg-color: #cffff0;
+  --sidebar-bg-color: rgba(1, 6, 5, 0.97);
+  --sidebar-fg-color: #94d8c8;
+  --secondary-sidebar-bg-color: rgba(7, 24, 20, 0.96);
+  --secondary-sidebar-fg-color: #94d8c8;
+  --card-bg-color: rgba(7, 24, 20, 0.92);
+  --card-fg-color: #cffff0;
+  --popover-bg-color: #071814;
+  --popover-fg-color: #cffff0;
+  --accent-bg-color: #174a40;
+  --accent-fg-color: #e7fff8;
+  --accent-color: #8fffe3;
+  --border-color: rgba(143, 255, 227, 0.24);
+  --shade-color: rgba(0, 3, 3, 0.72);
+
+  background-color: rgba(2, 9, 8, 0.94);
+  color: #cffff0;
+  font-family: "JetBrainsMono Nerd Font", monospace;
+}
+
+window.nautilus-window headerbar,
+window.nautilus-window .toolbar {
+  background-color: rgba(1, 6, 5, 0.97);
+  color: #cffff0;
+  box-shadow: inset 0 -1px rgba(143, 255, 227, 0.18);
+}
+
+window.nautilus-window .view,
+window.nautilus-window .nautilus-grid-view,
+window.nautilus-window .nautilus-list-view,
+window.nautilus-window .nautilus-network-view {
+  background-color: rgba(2, 9, 8, 0.94);
+  color: #cffff0;
+}
+
+window.nautilus-window .nautilus-grid-view gridview,
+window.nautilus-window .nautilus-list-view columnview,
+window.nautilus-window .nautilus-list-view listview,
+window.nautilus-window .nautilus-network-view listview {
+  --accent-bg-color: #174a40;
+  --accent-color: #8fffe3;
+  background-color: transparent;
+  color: #cffff0;
+}
+
+window.nautilus-window .navigation-sidebar {
+  background-color: rgba(1, 6, 5, 0.97);
+  color: #94d8c8;
+  border-right: 1px solid rgba(143, 255, 227, 0.16);
+}
+
+window.nautilus-window .navigation-sidebar > row {
+  color: #94d8c8;
+  border-radius: 3px;
+}
+
+window.nautilus-window .navigation-sidebar > row:hover {
+  background-color: rgba(143, 255, 227, 0.08);
+  color: #cffff0;
+}
+
+window.nautilus-window .navigation-sidebar > row:selected {
+  background-color: rgba(23, 74, 64, 0.78);
+  color: #e7fff8;
+  box-shadow: inset 2px 0 #8fffe3,
+              inset 0 0 0 1px rgba(143, 255, 227, 0.18);
+}
+
+window.nautilus-window .nautilus-grid-view gridview > child.activatable:hover,
+window.nautilus-window .nautilus-list-view columnview > listview > row.activatable:hover {
+  background-color: rgba(143, 255, 227, 0.07);
+  box-shadow: inset 0 0 0 1px rgba(143, 255, 227, 0.14);
+}
+
+window.nautilus-window .nautilus-grid-view gridview > child:selected,
+window.nautilus-window .nautilus-list-view columnview > listview > row:selected {
+  background-color: rgba(23, 74, 64, 0.72);
+  color: #e7fff8;
+  box-shadow: inset 0 0 0 1px rgba(143, 255, 227, 0.42);
+}
+
+window.nautilus-window .nautilus-pathbar {
+  background-color: rgba(7, 24, 20, 0.9);
+  box-shadow: inset 0 0 0 1px rgba(143, 255, 227, 0.16);
+}
+
+window.nautilus-window button:hover,
+window.nautilus-window menubutton > button:hover {
+  background-color: rgba(143, 255, 227, 0.09);
+  color: #e7fff8;
+}
+
+window.nautilus-window button:checked,
+window.nautilus-window menubutton > button:checked {
+  background-color: rgba(23, 74, 64, 0.86);
+  color: #e7fff8;
+}
+
+window.nautilus-window entry,
+window.nautilus-window searchentry {
+  background-color: rgba(1, 6, 5, 0.9);
+  color: #e7fff8;
+  border-color: rgba(143, 255, 227, 0.24);
+  caret-color: #8fffe3;
+}
+
+window.nautilus-window separator {
+  background-color: rgba(143, 255, 227, 0.16);
+}
+
+window.nautilus-window scrollbar slider {
+  background-color: rgba(143, 255, 227, 0.28);
+}
+
+window.nautilus-window scrollbar slider:hover {
+  background-color: rgba(143, 255, 227, 0.5);
+}
+
+window.nautilus-window rubberband {
+  background-color: rgba(143, 255, 227, 0.12);
+  border: 1px solid rgba(143, 255, 227, 0.62);
+}
+
+window.nautilus-window .dim-label {
+  color: #4b8578;
+}
+
+window.nautilus-window selection {
+  background-color: #174a40;
+  color: #e7fff8;
+}

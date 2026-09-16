@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     width="3840" height="2160" viewBox="0 0 3840 2160">
+  <title>ENCOM 1984 phosphor display</title>
+  <defs>
+    <radialGradient id="phosphor-field" cx="50%" cy="46%" r="78%">
+      <stop offset="0" stop-color="#07120b"/>
+      <stop offset="0.58" stop-color="#040a06"/>
+      <stop offset="1" stop-color="#010302"/>
+    </radialGradient>
+    <radialGradient id="screen-emission" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#3ddd54" stop-opacity="0.035"/>
+      <stop offset="0.55" stop-color="#1b7c2b" stop-opacity="0.012"/>
+      <stop offset="1" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="phosphor-bloom" x="-30%" y="-50%" width="160%" height="200%">
+      <feGaussianBlur stdDeviation="22"/>
+    </filter>
+    <filter id="phosphor-halo" x="-40%" y="-60%" width="180%" height="220%">
+      <feGaussianBlur stdDeviation="48"/>
+    </filter>
+  </defs>
+
+  <!-- A mathematically smooth CRT field: no grain, scanlines or bitmap texture. -->
+  <rect width="3840" height="2160" fill="url(#phosphor-field)"/>
+  <ellipse cx="1920" cy="1080" rx="1500" ry="920" fill="url(#screen-emission)"/>
+
+  <!-- The same vector mark is layered as broad emission, bloom and crisp phosphor. -->
+  <image x="1195" y="634" width="1450" height="892"
+         href="encom-international-vector-green.svg"
+         xlink:href="encom-international-vector-green.svg"
+         opacity="0.11" filter="url(#phosphor-halo)"/>
+  <image x="1195" y="634" width="1450" height="892"
+         href="encom-international-vector-green.svg"
+         xlink:href="encom-international-vector-green.svg"
+         opacity="0.25" filter="url(#phosphor-bloom)"/>
+  <image x="1195" y="634" width="1450" height="892"
+         href="encom-international-vector-green.svg"
+         xlink:href="encom-international-vector-green.svg"
+         opacity="0.86"/>
+</svg>

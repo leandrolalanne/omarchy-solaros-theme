@@ -1,0 +1,35 @@
+mode = "dark"
+
+# Flynn's basement terminal: cold phosphor on smoked glass.
+accent = "#8fffe3"
+selection = "#103e34"
+muted = "#174a40"
+
+background = "#020908"
+dark_background = "#010605"
+darker_background = "#000303"
+lighter_background = "#071814"
+
+foreground = "#cffff0"
+dark_foreground = "#4b8578"
+light_foreground = "#94d8c8"
+bright_foreground = "#e7fff8"
+
+hyprland_active_border = "rgba(8fffe3ee) rgba(52cdb5cc) 90deg"
+hyprland_inactive_border = "rgba(174a4066)"
+
+red = "#ff718f"
+yellow = "#d7f58a"
+orange = "#9fe89c"
+green = "#63efba"
+cyan = "#7ffff0"
+blue = "#52cdb5"
+magenta = "#8bd6c5"
+brown = "#4e8e75"
+
+bright_red = "#ff9caf"
+bright_yellow = "#ebffad"
+bright_green = "#a5ffd8"
+bright_cyan = "#cafff3"
+bright_blue = "#8fffe3"
+bright_magenta = "#b9f5e7"

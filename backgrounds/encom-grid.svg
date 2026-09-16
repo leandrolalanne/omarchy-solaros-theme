@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="3840" height="2160" viewBox="0 0 3840 2160">
+  <defs>
+    <radialGradient id="ambient" cx="71%" cy="45%" r="75%">
+      <stop offset="0" stop-color="#0a241f"/>
+      <stop offset="0.38" stop-color="#04110f"/>
+      <stop offset="1" stop-color="#010504"/>
+    </radialGradient>
+    <linearGradient id="edge" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#8fffe3" stop-opacity="0"/>
+      <stop offset="0.52" stop-color="#8fffe3" stop-opacity="0.52"/>
+      <stop offset="1" stop-color="#52cdb5" stop-opacity="0"/>
+    </linearGradient>
+    <pattern id="fine-grid" width="120" height="120" patternUnits="userSpaceOnUse">
+      <path d="M120 0H0V120" fill="none" stroke="#79dbc7" stroke-opacity="0.035" stroke-width="2"/>
+      <circle cx="0" cy="0" r="3" fill="#8fffe3" fill-opacity="0.12"/>
+    </pattern>
+    <filter id="glow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="10" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <rect width="3840" height="2160" fill="url(#ambient)"/>
+  <rect width="3840" height="2160" fill="url(#fine-grid)"/>
+
+  <g fill="none" stroke="#75ddc8" stroke-opacity="0.10" stroke-width="2">
+    <path d="M0 280H760L920 440H1640"/>
+    <path d="M3840 480H3260L3040 700H2450"/>
+    <path d="M0 1880H820L1050 1650H1540"/>
+    <path d="M3840 1770H3380L3180 1570H2780"/>
+    <rect x="260" y="260" width="3320" height="1640" rx="14"/>
+    <rect x="300" y="300" width="3240" height="1560" rx="10" stroke-opacity="0.055"/>
+  </g>
+
+  <g transform="translate(2510 1050)" fill="none">
+    <circle r="480" stroke="#8fffe3" stroke-opacity="0.035" stroke-width="2"/>
+    <circle r="355" stroke="#8fffe3" stroke-opacity="0.07" stroke-width="3" stroke-dasharray="4 28"/>
+    <circle r="228" stroke="#8fffe3" stroke-opacity="0.14" stroke-width="2"/>
+    <path d="M0-520V-430M0 430V520M-520 0H-430M430 0H520" stroke="#8fffe3" stroke-opacity="0.20" stroke-width="4"/>
+    <path d="M-160-277H160L320 0 160 277H-160L-320 0Z" stroke="#8fffe3" stroke-opacity="0.22" stroke-width="3"/>
+    <path d="M-92-159H92L184 0 92 159H-92L-184 0Z" stroke="#8fffe3" stroke-opacity="0.10" stroke-width="2"/>
+    <circle r="14" fill="#cffff0" fill-opacity="0.72" filter="url(#glow)"/>
+  </g>
+
+  <g font-family="'JetBrainsMono Nerd Font', 'JetBrains Mono', 'DejaVu Sans Mono', monospace" fill="#cffff0">
+    <text x="330" y="415" font-size="28" letter-spacing="8" opacity="0.72">ENCOM // SYSTEM 04</text>
+    <text x="330" y="470" font-size="18" letter-spacing="5" opacity="0.34">SOLAROS 4.0.1  ·  USER FLYNN  ·  LINK READY</text>
+
+    <text x="330" y="1120" font-family="DejaVu Sans, sans-serif" font-size="184" font-weight="300" letter-spacing="34" opacity="0.90">ENCOM</text>
+    <rect x="334" y="1165" width="1090" height="3" fill="url(#edge)"/>
+    <text x="337" y="1225" font-size="22" letter-spacing="12" opacity="0.50">DIGITAL CONVERGENCE</text>
+
+    <text x="330" y="1780" font-size="17" letter-spacing="4" opacity="0.32">TERMINAL ACCESS // /OPT/LLL/CONTROLLER</text>
+    <text x="3185" y="1780" font-size="17" letter-spacing="4" opacity="0.32">GRID: 0042</text>
+  </g>
+
+  <g stroke="#8fffe3" stroke-opacity="0.18" fill="none">
+    <path d="M330 520h190m-190 32h110m-110 32h155"/>
+    <path d="M3300 1510h210m-140 32h140m-175 32h175"/>
+  </g>
+</svg>
