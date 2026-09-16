@@ -109,6 +109,11 @@ It is installed as an unpacked extension under `~/.vscode/extensions/`; if you
 run VSCodium or Cursor, copy that same directory into `~/.vscode-oss/extensions`
 or `~/.cursor/extensions` instead.
 
+**Obsidian.** Nothing to install — Omarchy copies `obsidian.css` into every
+vault it finds as a theme called *Omarchy*. Select it under
+**Settings → Appearance → Themes**, once, and it follows every theme switch
+from then on.
+
 **The keyboard.** OpenRGB, **Profiles → solaros-keyboard → Load**. It is one
 keyboard's layout and will not mean anything on different hardware.
 
@@ -147,6 +152,7 @@ So you can undo any of it by hand:
 | `btop.theme` · `icons.theme` | System monitor, icon set |
 | `shell.*.toml` | Omarchy shell surfaces — bar, launcher, notifications |
 | `gtk-4.0.css` | GTK4 apps, Nautilus included |
+| `obsidian.css` | Obsidian |
 | `backgrounds/` | Fifteen wallpapers, ordered flat grid → grid in perspective → scenes → abstract |
 | `hooks/` | Re-apply the Hyprland opacity and the webapp palettes on every theme switch |
 | `bin/` | The WhatsApp launcher and the two palette-swap scripts the hooks call |
