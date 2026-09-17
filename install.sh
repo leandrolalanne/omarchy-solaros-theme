@@ -107,6 +107,16 @@ say "vscode -> $HOME/.vscode/extensions/solaros.solaros-phosphor-1.0.0"
 rm -rf "$HOME/.vscode/extensions/solaros.solaros-phosphor-1.0.0"
 cp -a "$SRC/vscode" "$HOME/.vscode/extensions/solaros.solaros-phosphor-1.0.0"
 
+# Omarchy stages a copy of the theme under ~/.local/state/omarchy/current/theme
+# when the theme is applied, and everything on the system reads that copy, not
+# the directory above. Installing over a theme that is already active therefore
+# changes nothing until it is applied again -- so do it here.
+current=$(cat "$HOME/.local/state/omarchy/current/theme.name" 2>/dev/null || true)
+if [[ ${current,,} == "solaros" ]]; then
+  say "restaging -> omarchy theme set solaros"
+  omarchy theme set solaros >/dev/null 2>&1 || true
+fi
+
 cat <<EOF
 
 Installed. Two things this script cannot do for you:
